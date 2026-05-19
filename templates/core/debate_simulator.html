@@ -1,0 +1,91 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+<section class="page-header">
+    <h1>Political Debate Simulator</h1>
+    <p>
+        Choose parties and a topic. Yoh, Politics will show how each party would likely argue,
+        what critics would say back, and how the public may react.
+    </p>
+</section>
+
+<section class="debate-layout">
+
+    <form method="GET" class="debate-controls">
+
+        <div class="control-block">
+            <h2>Choose debate topic</h2>
+
+            <select name="topic">
+                {% for key, item in topics.items %}
+                    <option value="{{ key }}" {% if key == selected_topic %}selected{% endif %}>
+                        {{ item.title }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="control-block">
+            <h2>Choose parties</h2>
+
+            <div class="party-checkbox-grid">
+                {% for party in parties %}
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="parties"
+                            value="{{ party.slug }}"
+                            {% if party.slug in selected_slugs %}checked{% endif %}
+                        >
+                        {{ party.abbreviation }}
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <button type="submit" class="btn primary">Run Debate Simulation</button>
+    </form>
+
+    <section class="debate-topic-panel">
+        <p class="editorial-label">{{ topic.title }}</p>
+        <h2>What this debate is really about</h2>
+        <p>{{ topic.description }}</p>
+    </section>
+
+    <section class="debate-stage">
+
+        {% for row in debate_rows %}
+        <article class="debate-speaker-card">
+
+            <div class="debate-speaker-header">
+                <span>{{ row.party.political_position }}</span>
+                <h2>{{ row.party.abbreviation }}</h2>
+                <h3>{{ row.party.name }}</h3>
+            </div>
+
+            <div class="debate-section opening">
+                <h4>What this party would argue</h4>
+                <p>{{ row.argument }}</p>
+            </div>
+
+            <div class="debate-section counter">
+                <h4>What critics would say back</h4>
+                <p>{{ row.counter }}</p>
+            </div>
+
+            <div class="debate-section public">
+                <h4>Likely public reaction</h4>
+                <p>{{ row.public }}</p>
+            </div>
+
+            <a href="{% url 'party_detail' row.party.slug %}" class="read-more">
+                Open full party dossier →
+            </a>
+
+        </article>
+        {% endfor %}
+
+    </section>
+
+</section>
+{% endblock %}

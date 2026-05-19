@@ -1,0 +1,235 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+
+<section class="home-hero">
+    <div class="home-hero-content">
+        <p class="home-kicker">South African politics, explained properly.</p>
+
+        <h1>Yoh, Politics</h1>
+
+        <p class="home-lead">
+            A civic intelligence platform for young South Africans who want to understand
+            parties, policies, ideology, everyday politics, campus politics, political identity,
+            and what manifesto promises actually mean in real life.
+        </p>
+
+        <div class="home-actions">
+            <a href="{% url 'compass' %}" class="home-btn primary">Take the Political Compass</a>
+            <a href="{% url 'policy_feasibility' %}" class="home-btn secondary">Analyze a Policy</a>
+        </div>
+    </div>
+
+    <div class="home-hero-panel">
+        <p class="panel-label">Yoh, Politics question</p>
+        <h2>Are parties trying to fix South Africa, reform it, or completely remake it?</h2>
+        <p>
+            This platform helps you understand the deeper argument behind every political promise.
+        </p>
+    </div>
+</section>
+
+<section class="home-section">
+    <div class="section-heading">
+        <p class="home-kicker">Explore the platform</p>
+        <h2>Understand South African politics from every angle</h2>
+    </div>
+
+    <div class="home-feature-grid updated">
+
+        <a href="{% url 'parties' %}" class="home-feature-card large">
+            <span>01</span>
+            <h3>Party Dossiers</h3>
+            <p>
+                Explore each party ideology, society vision, equality views, immigration views,
+                crime views, governance style, public debates, and manifesto arguments.
+            </p>
+        </a>
+
+        <a href="{% url 'policy_feasibility' %}" class="home-feature-card gold-card">
+            <span>02</span>
+            <h3>What's Really Going On</h3>
+            <p>
+                Test whether policies like nationalisation, free education, NHI, basic income,
+                mass deportation, and land expropriation can actually work.
+            </p>
+        </a>
+
+        <a href="{% url 'campus_politics' %}" class="home-feature-card">
+            <span>03</span>
+            <h3>Campus Politics</h3>
+            <p>
+                Understand NSFAS, student protests, graduate anxiety, political apathy,
+                youth activism, and the politics of higher education.
+            </p>
+        </a>
+
+        <a href="{% url 'political_glossary' %}" class="home-feature-card">
+            <span>04</span>
+            <h3>Political Glossary</h3>
+            <p>
+                Search terms like GNU, BEE, cadre deployment, populism, socialism,
+                neoliberalism, austerity, and state capture.
+            </p>
+        </a>
+
+        <a href="{% url 'debate_simulator' %}" class="home-feature-card">
+            <span>05</span>
+            <h3>Debate Simulator</h3>
+            <p>
+                Choose parties and topics, then see their likely arguments,
+                counterarguments, ideological clashes, and public reactions.
+            </p>
+        </a>
+
+        <a href="{% url 'policy_compare' %}" class="home-feature-card">
+            <span>06</span>
+            <h3>Policy Comparison</h3>
+            <p>
+                Compare parties on economy, employment, crime, immigration,
+                social justice, youth development, governance, and transformation.
+            </p>
+        </a>
+
+        <a href="{% url 'party_worldviews' %}" class="home-feature-card">
+            <span>07</span>
+            <h3>Party Worldviews</h3>
+            <p>
+                See how each party understands South Africa: what it thinks went wrong,
+                who it thinks has power, and what society it wants to build.
+            </p>
+        </a>
+
+        <a href="{% url 'political_archetypes' %}" class="home-feature-card">
+            <span>08</span>
+            <h3>Political Archetypes</h3>
+            <p>
+                Explore voter types like the frustrated graduate, anti-corruption liberal,
+                liberation loyalist, law-and-order voter, and exhausted non-voter.
+            </p>
+        </a>
+
+        <a href="{% url 'politics_identity' %}" class="home-feature-card">
+            <span>09</span>
+            <h3>Politics and Identity</h3>
+            <p>
+                Learn why politics becomes personal through race, class, history,
+                land, language, fear, memory, and belonging.
+            </p>
+        </a>
+
+        <a href="{% url 'everyday_politics' %}" class="home-feature-card">
+            <span>10</span>
+            <h3>Everyday Politics</h3>
+            <p>
+                Learn why food prices, electricity, transport, unemployment,
+                municipalities, and corruption are deeply political.
+            </p>
+        </a>
+
+        <a href="{% url 'affects_you' %}" class="home-feature-card">
+            <span>11</span>
+            <h3>Life Under This Policy</h3>
+            <p>
+                See how manifestos may affect students, unemployed youth,
+                entrepreneurs, workers, rural residents, and small business owners.
+            </p>
+        </a>
+
+        <a href="{% url 'commentary' %}" class="home-feature-card dark-card">
+            <span>12</span>
+            <h3>Real Talk by That Corporate Gent</h3>
+            <p>
+                Read political commentary on youth politics, coalitions, corruption,
+                crime, economic anxiety, party psychology, and South African identity.
+            </p>
+        </a>
+
+    </div>
+</section>
+
+<section class="method-showcase">
+    <div class="method-left">
+        <p class="home-kicker">The Yoh, Politics method</p>
+
+        <h2>We do not just read manifestos. We decode the politics underneath them.</h2>
+
+        <p>
+            Every party is telling a story about South Africa: what went wrong,
+            who has power, who is being failed, and what kind of country should exist next.
+        </p>
+    </div>
+
+    <div class="method-timeline">
+        <div class="method-step">
+            <span>01</span>
+            <div>
+                <h3>Manifesto</h3>
+                <p>What the party says it will do when it gets power.</p>
+            </div>
+        </div>
+
+        <div class="method-step">
+            <span>02</span>
+            <div>
+                <h3>Worldview</h3>
+                <p>What the party thinks South Africa is, and what it thinks broke the country.</p>
+            </div>
+        </div>
+
+        <div class="method-step">
+            <span>03</span>
+            <div>
+                <h3>Feasibility</h3>
+                <p>Whether the policy can actually work with South Africa money, institutions, and state capacity.</p>
+            </div>
+        </div>
+
+        <div class="method-step">
+            <span>04</span>
+            <div>
+                <h3>Impact</h3>
+                <p>Who benefits, who worries, who pays, and who feels the policy first.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="home-debate-section">
+    <div class="section-heading">
+        <p class="home-kicker">Core political tensions</p>
+        <h2>The big questions behind South African politics</h2>
+    </div>
+
+    <div class="debate-grid">
+        <div class="debate-card">
+            <h3>Growth or redistribution?</h3>
+            <p>
+                Should South Africa first grow the economy, or directly restructure ownership?
+            </p>
+        </div>
+
+        <div class="debate-card">
+            <h3>Clean government or radical change?</h3>
+            <p>
+                Is the crisis mainly state failure, or a deeper economic structure that needs disruption?
+            </p>
+        </div>
+
+        <div class="debate-card">
+            <h3>Safety or social causes?</h3>
+            <p>
+                Is crime mainly a policing crisis, or a symptom of unemployment, inequality, and social collapse?
+            </p>
+        </div>
+
+        <div class="debate-card">
+            <h3>Borders or solidarity?</h3>
+            <p>
+                How should South Africa balance immigration control, African solidarity, jobs, and public services?
+            </p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

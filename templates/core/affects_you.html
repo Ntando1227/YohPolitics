@@ -1,0 +1,65 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+<section class="page-header">
+    <h1>Life Under This Policy</h1>
+    <p>
+        Choose your situation and see how party manifesto themes may affect your life,
+        opportunities, risks, and daily realities.
+    </p>
+</section>
+
+<section class="persona-selector">
+    {% for key, item in personas.items %}
+        <a href="{% url 'affects_you' %}?persona={{ key }}"
+           class="persona-pill {% if selected_key == key %}active{% endif %}">
+            {{ item.title }}
+        </a>
+    {% endfor %}
+</section>
+
+<section class="editorial-block persona-intro">
+    <p class="editorial-label">Selected Profile</p>
+    <h2>{{ persona.title }}</h2>
+    <p>{{ persona.intro }}</p>
+</section>
+
+<section class="longform-layout">
+    {% for item in party_breakdowns %}
+        <section class="manifesto-story">
+            <div class="story-header">
+                <span class="story-category">{{ item.party.political_position }}</span>
+                <h2>{{ item.party.name }}</h2>
+            </div>
+
+            <div class="story-section highlight">
+                <h3>What this party generally means for this profile</h3>
+                <p>
+                    {{ item.party.youth_relevance }}
+                </p>
+            </div>
+
+            {% if item.policies %}
+                {% for policy in item.policies %}
+                    <div class="story-section">
+                        <h3>{{ policy.category }}</h3>
+                        <p>{{ policy.yoh_analysis }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="story-section">
+                    <h3>No direct policy card yet</h3>
+                    <p>
+                        This party has not yet been given detailed policy cards for this profile,
+                        but its broader political identity still affects how it approaches your situation.
+                    </p>
+                </div>
+            {% endif %}
+
+            <a href="{% url 'party_detail' item.party.slug %}" class="read-more">
+                Open full party dossier →
+            </a>
+        </section>
+    {% endfor %}
+</section>
+{% endblock %}

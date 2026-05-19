@@ -1,0 +1,62 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+<section class="page-header">
+    <h1>How Parties See South Africa</h1>
+    <p>
+        Parties do not only offer policies. They offer different stories about what South Africa is,
+        what went wrong, who has power, who is being failed, and what must change.
+    </p>
+</section>
+
+<section class="learn-hub">
+
+    {% for party in parties %}
+    <details class="learn-card">
+        <summary>
+            <span>{{ forloop.counter|stringformat:"02d" }}</span>
+            <h2>{{ party.abbreviation }}: the country it thinks South Africa is</h2>
+        </summary>
+
+        <div class="learn-content">
+            <p>{{ party.short_explainer }}</p>
+
+            <div class="learn-grid">
+                <div>
+                    <h3>The problem it sees</h3>
+                    <p>{{ party.political_identity }}</p>
+                </div>
+
+                <div>
+                    <h3>The society it wants</h3>
+                    <p>{{ party.society_vision }}</p>
+                </div>
+            </div>
+
+            <div class="learn-grid three">
+                <div>
+                    <h3>Economic worldview</h3>
+                    <p>{{ party.economic_approach }}</p>
+                </div>
+
+                <div>
+                    <h3>Equality worldview</h3>
+                    <p>{{ party.equality_view }}</p>
+                </div>
+
+                <div>
+                    <h3>State power</h3>
+                    <p>{{ party.governance_style }}</p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <strong>Yoh, Politics reading:</strong>
+                {{ party.yoh_commentary }}
+            </div>
+        </div>
+    </details>
+    {% endfor %}
+
+</section>
+{% endblock %}

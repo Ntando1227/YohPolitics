@@ -1,0 +1,81 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+<section class="page-header">
+    <h1>What's Really Going On</h1>
+    <p>
+        Some policies sound powerful in speeches. This tool asks the harder question:
+        can they actually work, what would they cost, and who would feel the impact?
+    </p>
+</section>
+
+<section class="feasibility-layout">
+
+    <form method="GET" class="feasibility-controls">
+        <h2>Choose a policy</h2>
+
+        <select name="policy">
+            {% for key, item in policies.items %}
+                <option value="{{ key }}" {% if key == selected_key %}selected{% endif %}>
+                    {{ item.title }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <button type="submit" class="btn primary">See What's Really Going On</button>
+    </form>
+
+    <section class="feasibility-hero-card">
+        <p class="editorial-label">Policy under review</p>
+        <h2>{{ selected_policy.title }}</h2>
+        <p>{{ selected_policy.summary }}</p>
+    </section>
+
+    <section class="feasibility-grid">
+
+        <div class="feasibility-card">
+            <span>01</span>
+            <h3>Cost</h3>
+            <p>{{ selected_policy.cost }}</p>
+        </div>
+
+        <div class="feasibility-card">
+            <span>02</span>
+            <h3>Implementation difficulty</h3>
+            <p>{{ selected_policy.difficulty }}</p>
+        </div>
+
+        <div class="feasibility-card warning">
+            <span>03</span>
+            <h3>Corruption risk</h3>
+            <p>{{ selected_policy.corruption_risk }}</p>
+        </div>
+
+        <div class="feasibility-card">
+            <span>04</span>
+            <h3>Likely winners</h3>
+            <p>{{ selected_policy.winners }}</p>
+        </div>
+
+        <div class="feasibility-card">
+            <span>05</span>
+            <h3>Likely losers</h3>
+            <p>{{ selected_policy.losers }}</p>
+        </div>
+
+        <div class="feasibility-card dark">
+            <span>06</span>
+            <h3>State-capacity concern</h3>
+            <p>{{ selected_policy.state_capacity }}</p>
+        </div>
+
+    </section>
+
+    <section class="feasibility-yoh-view">
+        <p class="editorial-label">Yoh, Politics reading</p>
+        <h2>The serious question</h2>
+        <p>{{ selected_policy.yoh_view }}</p>
+    </section>
+
+</section>
+{% endblock %}
