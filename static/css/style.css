@@ -3565,3 +3565,196 @@ a[href*="parties"] {
         flex-direction: column;
     }
 }
+
+/* PARTY IMBIZO DETAIL REDESIGN */
+
+.party-imbizo-hero {
+    max-width: 1240px;
+    margin: 70px auto 35px;
+    padding: 52px;
+    background: #f4efe6 !important;
+    color: #182233 !important;
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    border-left: 8px solid #9b7a2f;
+}
+
+.party-imbizo-label {
+    display: inline-block;
+    background: #1f2f46;
+    color: white;
+    padding: 9px 15px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+}
+
+.party-imbizo-hero h1 {
+    color: #182233 !important;
+    font-size: clamp(48px, 7vw, 86px);
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 20px;
+}
+
+.party-imbizo-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 28px;
+}
+
+.party-imbizo-meta span {
+    background: #e8dfd2;
+    color: #182233;
+    border: 1px solid #d4cec2;
+    border-radius: 999px;
+    padding: 10px 16px;
+    font-weight: 900;
+}
+
+.party-imbizo-hero p {
+    color: #303a46 !important;
+    font-size: 20px;
+    line-height: 1.9;
+    max-width: 1000px;
+}
+
+.party-analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 26px;
+    margin-bottom: 35px;
+}
+
+.party-analysis-block {
+    background: #f4efe6 !important;
+    color: #182233 !important;
+    border-radius: 18px;
+    padding: 34px;
+    box-shadow: var(--shadow);
+    border: 1px solid #d4cec2;
+    border-left: 6px solid #1f2f46;
+}
+
+.party-analysis-block h3 {
+    color: #182233 !important;
+    font-size: 28px;
+    margin-bottom: 16px;
+}
+
+.party-analysis-block p {
+    color: #303a46 !important;
+    font-size: 18px;
+    line-height: 1.95;
+}
+
+.party-yoh-take {
+    background: #101c2b !important;
+    color: #f8f4ec !important;
+    border-radius: 18px;
+    padding: 42px;
+    box-shadow: var(--shadow);
+    border-left: 8px solid #9b7a2f;
+    margin-bottom: 40px;
+}
+
+.party-yoh-take h2 {
+    color: #ffffff !important;
+    font-size: 40px;
+    margin-bottom: 18px;
+}
+
+.party-yoh-take p {
+    color: #d8dee7 !important;
+    font-size: 19px;
+    line-height: 1.9;
+}
+
+.manifesto-policy-list h2 {
+    color: #f8f4ec !important;
+    font-size: 44px;
+    margin-bottom: 26px;
+}
+
+.party-policy-card {
+    background: #f4efe6 !important;
+    color: #182233 !important;
+    border-radius: 18px;
+    padding: 36px;
+    box-shadow: var(--shadow);
+    border: 1px solid #d4cec2;
+    margin-bottom: 30px;
+}
+
+.party-policy-card span {
+    display: inline-block;
+    background: #1f2f46;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
+
+.party-policy-card h3 {
+    color: #182233 !important;
+    font-size: 34px;
+    margin-bottom: 22px;
+}
+
+.policy-inner-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+    margin-bottom: 22px;
+}
+
+.policy-inner-grid div {
+    background: #e8dfd2;
+    border-radius: 14px;
+    padding: 24px;
+    border: 1px solid #d4cec2;
+}
+
+.policy-inner-grid h4,
+.policy-yoh-box h4 {
+    color: #182233 !important;
+    margin-bottom: 12px;
+    font-size: 21px;
+}
+
+.policy-inner-grid p,
+.policy-yoh-box p {
+    color: #303a46 !important;
+    line-height: 1.85;
+}
+
+.policy-yoh-box {
+    background: #101c2b;
+    color: #f8f4ec;
+    border-radius: 14px;
+    padding: 26px;
+    border-left: 6px solid #9b7a2f;
+}
+
+.policy-yoh-box h4,
+.policy-yoh-box p {
+    color: #f8f4ec !important;
+}
+
+@media screen and (max-width: 900px) {
+    .party-imbizo-hero {
+        margin: 35px 22px;
+        padding: 32px;
+    }
+
+    .party-analysis-grid,
+    .policy-inner-grid {
+        grid-template-columns: 1fr;
+    }
+}
