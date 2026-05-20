@@ -7,5 +7,6 @@ python manage.py migrate
 python manage.py seed_parties
 python manage.py seed_more_parties
 python manage.py seed_actionsa
+python manage.py seed_eff
 python manage.py seed_commentary
 python manage.py seed_extra_commentary
