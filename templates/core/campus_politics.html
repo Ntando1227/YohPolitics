@@ -1,5 +1,205 @@
-﻿{% extends "base.html" %} {% block content %}
-<section class="page-header"> <h1>Campus Politics</h1> <p> Student politics is not separate from national politics. NSFAS, protests, unemployment, accommodation, safety, identity, and activism all shape how young people experience democracy. </p>
-</section> <section class="learn-intro"> <div> <p class="editorial-label">Youth and Campus Life</p> <h2>Campus is where the future meets the state directly.</h2> <p> For many young South Africans, politics becomes real through funding delays, registration blocks, food insecurity, accommodation stress, protests, and graduate anxiety. </p> </div>
-</section> <section class="learn-hub"> <details class="learn-card" open> <summary> <span>01</span> <h2>NSFAS and the politics of access</h2> </summary> <div class="learn-content"> <p> NSFAS is not only a funding scheme. It is one of the biggest gateways between poverty and higher education. </p> <div class="learn-grid"> <div> <h3>Why it matters</h3> <p> When NSFAS works, poor and working-class students can enter higher education. When it fails, students face hunger, debt, exclusion, and emotional pressure. </p> </div> <div> <h3>The political issue</h3> <p> Funding delays reveal state-capacity problems: administration, data, payment systems, fraud controls, university coordination, and budget pressure. </p> </div> </div> <div class="example-box"> <strong>Yoh, Politics view:</strong> Free education is incomplete if students are funded on paper but hungry, homeless, or blocked in practice. </div> </div> </details> <details class="learn-card"> <summary> <span>02</span> <h2>Student protests</h2> </summary> <div class="learn-content"> <p> Student protests often happen when formal systems fail to resolve urgent problems. </p> <div class="learn-grid"> <div> <h3>What students protest about</h3> <p> Fees, accommodation, registration, debt, NSFAS, racism, safety, food insecurity, academic exclusion, and institutional accountability. </p> </div> <div> <h3>Why it becomes emotional</h3> <p> Students are not only fighting for services. They are fighting for futures that can disappear because of one unpaid fee, one missing allowance, or one admin failure. </p> </div> </div> <div class="example-box"> <strong>Political tension:</strong> Protests can disrupt learning, but they often expose problems institutions ignored for too long. </div> </div> </details> <details class="learn-card"> <summary> <span>03</span> <h2>Graduate anxiety</h2> </summary> <div class="learn-content"> <p> Graduate anxiety is the fear that education no longer guarantees opportunity. </p> <div class="learn-grid"> <div> <h3>Why it happens</h3> <p> High unemployment, weak networks, unpaid internships, transport costs, experience requirements, and slow hiring make the transition from campus to work painful. </p> </div> <div> <h3>Why it is political</h3> <p> The education system, economy, labour market, public investment, and private-sector confidence all shape whether graduates find work. </p> </div> </div> <div class="example-box"> <strong>Hard truth:</strong> A degree can improve chances, but it does not automatically overcome a broken economy. </div> </div> </details> <details class="learn-card"> <summary> <span>04</span> <h2>Political apathy on campus</h2> </summary> <div class="learn-content"> <p> Political apathy is not always laziness. Sometimes it is disappointment. </p> <div class="learn-grid"> <div> <h3>Why students disengage</h3> <p> They may feel parties use youth for rallies but ignore their real problems: jobs, rent, data costs, transport, mental health, and safety. </p> </div> <div> <h3>Why it matters</h3> <p> If young people stop believing politics can change anything, democracy becomes older, less energetic, and less responsive. </p> </div> </div> <div class="example-box"> <strong>Yoh, Politics view:</strong> Young people are not politically empty. Many are politically tired. </div> </div> </details> <details class="learn-card"> <summary> <span>05</span> <h2>Youth activism</h2> </summary> <div class="learn-content"> <p> Youth activism is how young people force institutions to respond when normal channels feel too slow. </p> <div class="learn-grid"> <div> <h3>Where activism happens</h3> <p> SRCs, protests, petitions, social media campaigns, community projects, student organisations, and issue-based movements. </p> </div> <div> <h3>The risk</h3> <p> Activism can become performative if it becomes only slogans, clout, or factional politics. </p> </div> </div> <div class="example-box"> <strong>Best version:</strong> Youth activism is strongest when it combines anger, evidence, organisation, and a clear demand. </div> </div> </details> </section>
-{% endblock %} 
+﻿{% extends "base.html" %}
+
+{% block content %}
+<section class="page-header">
+    <h1>Campus Politics</h1>
+    <p>
+        Student politics is not separate from national politics. NSFAS, protests,
+        unemployment, accommodation, safety, identity, and activism all shape how young people experience democracy.
+    </p>
+</section>
+
+<section class="learn-intro">
+    <div>
+        <p class="editorial-label">Youth and Campus Life</p>
+        <h2>Campus is where the future meets the state directly.</h2>
+        <p>
+            For many young South Africans, politics becomes real through funding delays,
+            registration blocks, food insecurity, accommodation stress, protests, and graduate anxiety.
+        </p>
+    </div>
+</section>
+
+<section class="learn-hub">
+
+    <details class="learn-card" open>
+        <summary>
+            <span>01</span>
+            <h2>NSFAS and the politics of access</h2>
+        </summary>
+
+        <div class="learn-content">
+            <p>
+                NSFAS is not only a funding scheme. It is one of the biggest gateways between poverty and higher education.
+            </p>
+
+            <div class="learn-grid">
+                <div>
+                    <h3>Why it matters</h3>
+                    <p>
+                        When NSFAS works, poor and working-class students can enter higher education.
+                        When it fails, students face hunger, debt, exclusion, and emotional pressure.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>The political issue</h3>
+                    <p>
+                        Funding delays reveal state-capacity problems: administration, data, payment systems,
+                        fraud controls, university coordination, and budget pressure.
+                    </p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <strong>Yoh, Politics view:</strong>
+                Free education is incomplete if students are funded on paper but hungry, homeless, or blocked in practice.
+            </div>
+        </div>
+    </details>
+
+    <details class="learn-card">
+        <summary>
+            <span>02</span>
+            <h2>Student protests</h2>
+        </summary>
+
+        <div class="learn-content">
+            <p>
+                Student protests often happen when formal systems fail to resolve urgent problems.
+            </p>
+
+            <div class="learn-grid">
+                <div>
+                    <h3>What students protest about</h3>
+                    <p>
+                        Fees, accommodation, registration, debt, NSFAS, racism, safety, food insecurity,
+                        academic exclusion, and institutional accountability.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>Why it becomes emotional</h3>
+                    <p>
+                        Students are not only fighting for services. They are fighting for futures that can disappear
+                        because of one unpaid fee, one missing allowance, or one admin failure.
+                    </p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <strong>Political tension:</strong>
+                Protests can disrupt learning, but they often expose problems institutions ignored for too long.
+            </div>
+        </div>
+    </details>
+
+    <details class="learn-card">
+        <summary>
+            <span>03</span>
+            <h2>Graduate anxiety</h2>
+        </summary>
+
+        <div class="learn-content">
+            <p>
+                Graduate anxiety is the fear that education no longer guarantees opportunity.
+            </p>
+
+            <div class="learn-grid">
+                <div>
+                    <h3>Why it happens</h3>
+                    <p>
+                        High unemployment, weak networks, unpaid internships, transport costs, experience requirements,
+                        and slow hiring make the transition from campus to work painful.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>Why it is political</h3>
+                    <p>
+                        The education system, economy, labour market, public investment, and private-sector confidence
+                        all shape whether graduates find work.
+                    </p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <strong>Hard truth:</strong>
+                A degree can improve chances, but it does not automatically overcome a broken economy.
+            </div>
+        </div>
+    </details>
+
+    <details class="learn-card">
+        <summary>
+            <span>04</span>
+            <h2>Political apathy on campus</h2>
+        </summary>
+
+        <div class="learn-content">
+            <p>
+                Political apathy is not always laziness. Sometimes it is disappointment.
+            </p>
+
+            <div class="learn-grid">
+                <div>
+                    <h3>Why students disengage</h3>
+                    <p>
+                        They may feel parties use youth for rallies but ignore their real problems:
+                        jobs, rent, data costs, transport, mental health, and safety.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>Why it matters</h3>
+                    <p>
+                        If young people stop believing politics can change anything,
+                        democracy becomes older, less energetic, and less responsive.
+                    </p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <strong>Yoh, Politics view:</strong>
+                Young people are not politically empty. Many are politically tired.
+            </div>
+        </div>
+    </details>
+
+    <details class="learn-card">
+        <summary>
+            <span>05</span>
+            <h2>Youth activism</h2>
+        </summary>
+
+        <div class="learn-content">
+            <p>
+                Youth activism is how young people force institutions to respond when normal channels feel too slow.
+            </p>
+
+            <div class="learn-grid">
+                <div>
+                    <h3>Where activism happens</h3>
+                    <p>
+                        SRCs, protests, petitions, social media campaigns, community projects,
+                        student organisations, and issue-based movements.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>The risk</h3>
+                    <p>
+                        Activism can become performative if it becomes only slogans, clout, or factional politics.
+                    </p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <strong>Best version:</strong>
+                Youth activism is strongest when it combines anger, evidence, organisation, and a clear demand.
+            </div>
+        </div>
+    </details>
+
+</section>
+{% endblock %}

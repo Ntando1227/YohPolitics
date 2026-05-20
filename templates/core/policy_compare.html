@@ -1,4 +1,112 @@
-﻿{% extends "base.html" %} {% block content %}
-<section class="page-header"> <h1>Policy Comparison Engine</h1> <p> Compare how South African political parties think about the same issue. This is not just a policy table, it shows the deeper ideological difference behind each party. </p>
-</section> <section class="compare-layout"> <form method="GET" class="compare-controls"> <div class="control-block"> <h2>Choose a policy category</h2> <select name="category"> {% for category in categories %} <option value="{{ category }}" {% if category == selected_category %}selected{% endif %}> {{ category }} </option> {% endfor %} </select> </div> <div class="control-block"> <h2>Choose parties to compare</h2> <div class="party-checkbox-grid"> {% for party in parties %} <label> <input type="checkbox" name="parties" value="{{ party.slug }}" {% if party.slug in selected_party_slugs %}checked{% endif %} > {{ party.abbreviation }} </label> {% endfor %} </div> </div> <button type="submit" class="btn primary">Compare Policies</button> </form> <section class="editorial-block comparison-intro"> <p class="editorial-label">{{ selected_category }}</p> <h2>What this comparison is really about</h2> <p>{{ category_commentary }}</p> </section> <section class="comparison-grid"> {% for row in comparison_rows %} <article class="comparison-card"> <div class="comparison-party-header"> <span>{{ row.party.political_position }}</span> <h2>{{ row.party.abbreviation }}</h2> <h3>{{ row.party.name }}</h3> </div> {% if row.policy %} <div class="comparison-section"> <h4>Manifesto argument</h4> <p>{{ row.policy.manifesto_position }}</p> </div> <div class="comparison-section highlight"> <h4>Deeper political meaning</h4> <p>{{ row.policy.simplified_explanation }}</p> </div> <div class="comparison-section"> <h4>Why supporters defend this</h4> <p>{{ row.policy.possible_advantages }}</p> </div> <div class="comparison-section"> <h4>Why critics worry</h4> <p>{{ row.policy.possible_concerns }}</p> </div> <div class="comparison-section impact"> <h4>Who feels this most?</h4> <p>{{ row.policy.affected_groups }}</p> </div> <div class="comparison-section commentary"> <h4>Yoh, Politics reading</h4> <p>{{ row.policy.yoh_analysis }}</p> </div> {% else %} <div class="comparison-section"> <h4>No direct policy card yet</h4> <p> This party has not yet been given a specific policy card for {{ selected_category }}. Use its full dossier for a broader ideological reading. </p> </div> {% endif %} <a href="{% url 'party_detail' row.party.slug %}" class="read-more"> Open full dossier → </a> </article> {% endfor %} </section> </section>
-{% endblock %} 
+﻿{% extends "base.html" %}
+
+{% block content %}
+<section class="page-header">
+    <h1>Policy Comparison Engine</h1>
+    <p>
+        Compare how South African political parties think about the same issue.
+        This is not just a policy table — it shows the deeper ideological difference behind each party.
+    </p>
+</section>
+
+<section class="compare-layout">
+
+    <form method="GET" class="compare-controls">
+
+        <div class="control-block">
+            <h2>Choose a policy category</h2>
+
+            <select name="category">
+                {% for category in categories %}
+                    <option value="{{ category }}" {% if category == selected_category %}selected{% endif %}>
+                        {{ category }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="control-block">
+            <h2>Choose parties to compare</h2>
+
+            <div class="party-checkbox-grid">
+                {% for party in parties %}
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="parties"
+                            value="{{ party.slug }}"
+                            {% if party.slug in selected_party_slugs %}checked{% endif %}
+                        >
+                        {{ party.abbreviation }}
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <button type="submit" class="btn primary">Compare Policies</button>
+    </form>
+
+    <section class="editorial-block comparison-intro">
+        <p class="editorial-label">{{ selected_category }}</p>
+        <h2>What this comparison is really about</h2>
+        <p>{{ category_commentary }}</p>
+    </section>
+
+    <section class="comparison-grid">
+        {% for row in comparison_rows %}
+            <article class="comparison-card">
+                <div class="comparison-party-header">
+                    <span>{{ row.party.political_position }}</span>
+                    <h2>{{ row.party.abbreviation }}</h2>
+                    <h3>{{ row.party.name }}</h3>
+                </div>
+
+                {% if row.policy %}
+                    <div class="comparison-section">
+                        <h4>Manifesto argument</h4>
+                        <p>{{ row.policy.manifesto_position }}</p>
+                    </div>
+
+                    <div class="comparison-section highlight">
+                        <h4>Deeper political meaning</h4>
+                        <p>{{ row.policy.simplified_explanation }}</p>
+                    </div>
+
+                    <div class="comparison-section">
+                        <h4>Why supporters defend this</h4>
+                        <p>{{ row.policy.possible_advantages }}</p>
+                    </div>
+
+                    <div class="comparison-section">
+                        <h4>Why critics worry</h4>
+                        <p>{{ row.policy.possible_concerns }}</p>
+                    </div>
+
+                    <div class="comparison-section impact">
+                        <h4>Who feels this most?</h4>
+                        <p>{{ row.policy.affected_groups }}</p>
+                    </div>
+
+                    <div class="comparison-section commentary">
+                        <h4>Yoh, Politics reading</h4>
+                        <p>{{ row.policy.yoh_analysis }}</p>
+                    </div>
+                {% else %}
+                    <div class="comparison-section">
+                        <h4>No direct policy card yet</h4>
+                        <p>
+                            This party has not yet been given a specific policy card for {{ selected_category }}.
+                            Use its full dossier for a broader ideological reading.
+                        </p>
+                    </div>
+                {% endif %}
+
+                <a href="{% url 'party_detail' row.party.slug %}" class="read-more">
+                    Open full dossier →
+                </a>
+            </article>
+        {% endfor %}
+    </section>
+
+</section>
+{% endblock %}

@@ -1,1 +1,49 @@
-﻿{% extends "base.html" %} {% block content %} <section class="page-header"> <h1>Real Talk by That Corporate Gent</h1> <p> Political commentary on youth politics, coalitions, corruption, crime, economic anxiety, party psychology, and everyday South African life. </p> </section> <section class="commentary-clean-layout"> {% if featured_article %} <article class="commentary-feature"> <div> <span>{{ featured_article.category }}</span> <p class="byline">By That Corporate Gent</p> </div> <h2>{{ featured_article.title }}</h2> <p>{{ featured_article.summary }}</p> <a href="{% url 'article_detail' featured_article.id %}" class="btn primary"> Read the real talk </a> </article> {% endif %} <section class="commentary-clean-grid"> {% for article in articles %} <article class="commentary-clean-card"> <span>{{ article.category }}</span> <h2>{{ article.title }}</h2> <p>{{ article.summary }}</p> <div class="commentary-clean-footer"> <small>By That Corporate Gent</small> <a href="{% url 'article_detail' article.id %}">Read →</a> </div> </article> {% endfor %} </section> </section> {% endblock %} 
+﻿{% extends "base.html" %}
+
+{% block content %}
+<section class="page-header">
+    <h1>Real Talk by That Corporate Gent</h1>
+    <p>
+        Political commentary on youth politics, coalitions, corruption, crime,
+        economic anxiety, party psychology, and everyday South African life.
+    </p>
+</section>
+
+<section class="commentary-clean-layout">
+
+    {% if featured_article %}
+    <article class="commentary-feature">
+        <div>
+            <span>{{ featured_article.category }}</span>
+            <p class="byline">By That Corporate Gent</p>
+        </div>
+
+        <h2>{{ featured_article.title }}</h2>
+
+        <p>{{ featured_article.summary }}</p>
+
+        <a href="{% url 'article_detail' featured_article.id %}" class="btn primary">
+            Read the real talk
+        </a>
+    </article>
+    {% endif %}
+
+    <section class="commentary-clean-grid">
+        {% for article in articles %}
+        <article class="commentary-clean-card">
+            <span>{{ article.category }}</span>
+
+            <h2>{{ article.title }}</h2>
+
+            <p>{{ article.summary }}</p>
+
+            <div class="commentary-clean-footer">
+                <small>By That Corporate Gent</small>
+                <a href="{% url 'article_detail' article.id %}">Read →</a>
+            </div>
+        </article>
+        {% endfor %}
+    </section>
+
+</section>
+{% endblock %}

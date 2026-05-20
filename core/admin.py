@@ -1,6 +1,94 @@
 ﻿from django.contrib import admin
-from .models import Party, ManifestoPolicy, CommentaryArticle, QuizQuestion class ManifestoPolicyInline(admin.StackedInline): model = ManifestoPolicy extra = 1 @admin.register(Party)
-class PartyAdmin(admin.ModelAdmin): list_display = ( "name", "abbreviation", "leader", "ideology", "political_position", "youth_appeal", ) search_fields = ( "name", "abbreviation", "leader", "ideology", "political_position", ) list_filter = ( "political_position", "ideology", ) inlines = [ManifestoPolicyInline] @admin.register(ManifestoPolicy)
-class ManifestoPolicyAdmin(admin.ModelAdmin): list_display = ( "party", "category", "policy_title", ) search_fields = ( "party__name", "category", "policy_title", "simplified_explanation", ) list_filter = ( "party", "category", ) @admin.register(CommentaryArticle)
-class CommentaryArticleAdmin(admin.ModelAdmin): list_display = ( "title", "category", "created_at", ) search_fields = ( "title", "category", "summary", "body", ) list_filter = ( "category", "created_at", ) @admin.register(QuizQuestion)
-class QuizQuestionAdmin(admin.ModelAdmin): list_display = ( "question", "category", "left_score", "right_score", ) search_fields = ( "question", ) list_filter = ( "category", ) 
+from .models import Party, ManifestoPolicy, CommentaryArticle, QuizQuestion
+
+
+class ManifestoPolicyInline(admin.StackedInline):
+    model = ManifestoPolicy
+    extra = 1
+
+
+@admin.register(Party)
+class PartyAdmin(admin.ModelAdmin):
+    list_display = (
+        "name",
+        "abbreviation",
+        "leader",
+        "ideology",
+        "political_position",
+        "youth_appeal",
+    )
+
+    search_fields = (
+        "name",
+        "abbreviation",
+        "leader",
+        "ideology",
+        "political_position",
+    )
+
+    list_filter = (
+        "political_position",
+        "ideology",
+    )
+
+    inlines = [ManifestoPolicyInline]
+
+
+@admin.register(ManifestoPolicy)
+class ManifestoPolicyAdmin(admin.ModelAdmin):
+    list_display = (
+        "party",
+        "category",
+        "policy_title",
+    )
+
+    search_fields = (
+        "party__name",
+        "category",
+        "policy_title",
+        "simplified_explanation",
+    )
+
+    list_filter = (
+        "party",
+        "category",
+    )
+
+
+@admin.register(CommentaryArticle)
+class CommentaryArticleAdmin(admin.ModelAdmin):
+    list_display = (
+        "title",
+        "category",
+        "created_at",
+    )
+
+    search_fields = (
+        "title",
+        "category",
+        "summary",
+        "body",
+    )
+
+    list_filter = (
+        "category",
+        "created_at",
+    )
+
+
+@admin.register(QuizQuestion)
+class QuizQuestionAdmin(admin.ModelAdmin):
+    list_display = (
+        "question",
+        "category",
+        "left_score",
+        "right_score",
+    )
+
+    search_fields = (
+        "question",
+    )
+
+    list_filter = (
+        "category",
+    )

@@ -1,3 +1,24 @@
 ﻿from django.urls import path
-from . import views urlpatterns = [ path("", views.home, name="home"), path("learn/", views.learn, name="learn"), path("parties/", views.parties, name="parties"), path("parties/<slug:slug>/", views.party_detail, name="party_detail"), path("compare/", views.policy_compare, name="policy_compare"), path("your-political-dna/", views.compass, name="compass"), path("life-under-this-policy/", views.affects_you, name="affects_you"), path("everyday-politics/", views.everyday_politics, name="everyday_politics"), path("worldviews/", views.party_worldviews, name="party_worldviews"), path("archetypes/", views.political_archetypes, name="political_archetypes"), path("identity/", views.politics_identity, name="politics_identity"), path("debate/", views.debate_simulator, name="debate_simulator"), path("whats-really-going-on/", views.policy_feasibility, name="policy_feasibility"), path("campus/", views.campus_politics, name="campus_politics"), path("glossary/", views.political_glossary, name="political_glossary"), path("real-talk/", views.commentary, name="commentary"), path("real-talk/<int:article_id>/", views.article_detail, name="article_detail"), path("search/", views.site_search, name="site_search"), path("about/", views.about, name="about"),
-] 
+from . import views
+
+urlpatterns = [
+    path("", views.home, name="home"),
+    path("learn/", views.learn, name="learn"),
+    path("parties/", views.parties, name="parties"),
+    path("parties/<slug:slug>/", views.party_detail, name="party_detail"),
+    path("compare/", views.policy_compare, name="policy_compare"),
+    path("your-political-dna/", views.compass, name="compass"),
+    path("life-under-this-policy/", views.affects_you, name="affects_you"),
+    path("everyday-politics/", views.everyday_politics, name="everyday_politics"),
+    path("worldviews/", views.party_worldviews, name="party_worldviews"),
+    path("archetypes/", views.political_archetypes, name="political_archetypes"),
+    path("identity/", views.politics_identity, name="politics_identity"),
+    path("debate/", views.debate_simulator, name="debate_simulator"),
+    path("whats-really-going-on/", views.policy_feasibility, name="policy_feasibility"),
+    path("campus/", views.campus_politics, name="campus_politics"),
+    path("glossary/", views.political_glossary, name="political_glossary"),
+    path("real-talk/", views.commentary, name="commentary"),
+    path("real-talk/<int:article_id>/", views.article_detail, name="article_detail"),
+    path("search/", views.site_search, name="site_search"),
+    path("about/", views.about, name="about"),
+]

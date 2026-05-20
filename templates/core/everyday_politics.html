@@ -1,5 +1,253 @@
-﻿{% extends "base.html" %} {% block content %}
-<section class="page-header"> <h1>Politics in Everyday Life</h1> <p> Click each topic to see how politics shapes groceries, electricity, transport, unemployment, municipalities, corruption, safety, and daily stress. </p>
-</section> <section class="learn-intro"> <div> <p class="editorial-label">Everyday Civic Life</p> <h2>Politics is not far away. It is in the price of bread, the taxi fare, and the water tap.</h2> <p> This section explains how national debates become personal realities. Policy is not just Parliament language, it lands in households, relationships, businesses, schools, clinics, and streets. </p> </div>
-</section> <section class="learn-hub"> <details class="learn-card" open> <summary> <span>01</span> <h2>Why food prices are political</h2> </summary> <div class="learn-content"> <p> Food prices are shaped by fuel, electricity, farming conditions, imports, transport systems, crime, infrastructure, and corruption. </p> <div class="learn-grid"> <div> <h3>What politics controls</h3> <p> Government decisions affect fuel levies, trade rules, agricultural support, electricity stability, road quality, ports, and food supply chains. </p> </div> <div> <h3>Why households feel it</h3> <p> When production and transport become more expensive, the cost often reaches ordinary people through bread, eggs, cooking oil, meat, and vegetables. </p> </div> </div> <div class="example-box"> <strong>Everyday effect:</strong> Food inflation changes family stress, student concentration, meal planning, and whether unemployed people can eat properly. </div> </div> </details> <details class="learn-card"> <summary> <span>02</span> <h2>Why your electricity bill is political</h2> </summary> <div class="learn-content"> <p> Electricity is about Eskom, municipalities, energy policy, corruption, maintenance, procurement, debt, and long-term planning. </p> <div class="learn-grid"> <div> <h3>What politics controls</h3> <p> Political decisions affect electricity generation, private power rules, renewable energy, municipal debt, maintenance budgets, and electricity pricing. </p> </div> <div> <h3>Why people feel it</h3> <p> Electricity affects studying, cooking, safety, refrigeration, online work, small businesses, and whether people feel the country is functioning. </p> </div> </div> <div class="example-box"> <strong>Political reality:</strong> Load-shedding is not only inconvenience. It is lost income, spoiled food, unsafe streets, broken study time, and business pressure. </div> </div> </details> <details class="learn-card"> <summary> <span>03</span> <h2>Why transport is political</h2> </summary> <div class="learn-content"> <p> Transport determines access to opportunity. A job can exist, but still be unreachable if transport is too expensive, unsafe, unreliable, or far away. </p> <div class="learn-grid"> <div> <h3>What politics controls</h3> <p> Government affects road budgets, rail investment, taxi regulation, urban planning, public safety, fuel prices, and municipal transport systems. </p> </div> <div> <h3>Why opportunity depends on it</h3> <p> Transport shapes who can attend interviews, get to school, work late, visit family, access clinics, and participate in the economy. </p> </div> </div> <div class="example-box"> <strong>Everyday effect:</strong> Many people do not only experience unemployment because jobs do not exist. They experience it because opportunity is physically expensive to reach. </div> </div> </details> <details class="learn-card"> <summary> <span>04</span> <h2>Why unemployment changes relationships</h2> </summary> <div class="learn-content"> <p> Unemployment is economic, emotional, social, and political. It affects independence, dating, family pressure, confidence, identity, and hope. </p> <div class="learn-grid"> <div> <h3>What politics controls</h3> <p> Education policy, industrial policy, infrastructure, labour law, entrepreneurship support, public employment, and economic growth all shape work access. </p> </div> <div> <h3>Why it becomes personal</h3> <p> Long-term unemployment can create shame, dependency, relationship tension, mental strain, delayed adulthood, and anger at the political system. </p> </div> </div> <div class="example-box"> <strong>Yoh, Politics view:</strong> A society with mass youth unemployment becomes politically restless because people start asking whether democracy is actually improving their lives. </div> </div> </details> <details class="learn-card"> <summary> <span>05</span> <h2>Why municipalities matter more than people think</h2> </summary> <div class="learn-content"> <p> National politics gets attention, but municipalities shape daily life directly. </p> <div class="learn-grid"> <div> <h3>What municipalities affect</h3> <p> Water, refuse removal, streetlights, local roads, billing, zoning, public spaces, and many local electricity systems. </p> </div> <div> <h3>Why collapse feels immediate</h3> <p> When municipalities fail, politics appears as potholes, sewage, water outages, dark streets, illegal dumping, and broken public spaces. </p> </div> </div> <div class="example-box"> <strong>Accountability lesson:</strong> Understanding local government helps citizens know who to blame, who to pressure, and who to vote out. </div> </div> </details> <details class="learn-card"> <summary> <span>06</span> <h2>Why corruption affects ordinary life</h2> </summary> <div class="learn-content"> <p> Corruption is not only stolen money. It is stolen capacity. </p> <div class="learn-grid"> <div> <h3>What corruption weakens</h3> <p> Hospitals, schools, roads, policing, electricity, procurement, public trust, housing projects, and municipal services. </p> </div> <div> <h3>Why trust collapses</h3> <p> When corruption becomes normal, citizens stop believing that rules matter. This creates anger, cynicism, and political instability. </p> </div> </div> <div class="example-box"> <strong>The hidden damage:</strong> Corruption teaches citizens that accountability is weak, fairness is optional, and power matters more than rules. </div> </div> </details> </section>
-{% endblock %} 
+﻿{% extends "base.html" %}
+
+{% block content %}
+<section class="page-header">
+    <h1>Politics in Everyday Life</h1>
+    <p>
+        Click each topic to see how politics shapes groceries, electricity, transport,
+        unemployment, municipalities, corruption, safety, and daily stress.
+    </p>
+</section>
+
+<section class="learn-intro">
+    <div>
+        <p class="editorial-label">Everyday Civic Life</p>
+        <h2>Politics is not far away. It is in the price of bread, the taxi fare, and the water tap.</h2>
+        <p>
+            This section explains how national debates become personal realities.
+            Policy is not just Parliament language — it lands in households, relationships,
+            businesses, schools, clinics, and streets.
+        </p>
+    </div>
+</section>
+
+<section class="learn-hub">
+
+    <details class="learn-card" open>
+        <summary>
+            <span>01</span>
+            <h2>Why food prices are political</h2>
+        </summary>
+
+        <div class="learn-content">
+            <p>
+                Food prices are shaped by fuel, electricity, farming conditions,
+                imports, transport systems, crime, infrastructure, and corruption.
+            </p>
+
+            <div class="learn-grid">
+                <div>
+                    <h3>What politics controls</h3>
+                    <p>
+                        Government decisions affect fuel levies, trade rules, agricultural support,
+                        electricity stability, road quality, ports, and food supply chains.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>Why households feel it</h3>
+                    <p>
+                        When production and transport become more expensive, the cost often reaches
+                        ordinary people through bread, eggs, cooking oil, meat, and vegetables.
+                    </p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <strong>Everyday effect:</strong>
+                Food inflation changes family stress, student concentration, meal planning,
+                and whether unemployed people can eat properly.
+            </div>
+        </div>
+    </details>
+
+    <details class="learn-card">
+        <summary>
+            <span>02</span>
+            <h2>Why your electricity bill is political</h2>
+        </summary>
+
+        <div class="learn-content">
+            <p>
+                Electricity is about Eskom, municipalities, energy policy, corruption,
+                maintenance, procurement, debt, and long-term planning.
+            </p>
+
+            <div class="learn-grid">
+                <div>
+                    <h3>What politics controls</h3>
+                    <p>
+                        Political decisions affect electricity generation, private power rules,
+                        renewable energy, municipal debt, maintenance budgets, and electricity pricing.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>Why people feel it</h3>
+                    <p>
+                        Electricity affects studying, cooking, safety, refrigeration, online work,
+                        small businesses, and whether people feel the country is functioning.
+                    </p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <strong>Political reality:</strong>
+                Load-shedding is not only inconvenience. It is lost income, spoiled food,
+                unsafe streets, broken study time, and business pressure.
+            </div>
+        </div>
+    </details>
+
+    <details class="learn-card">
+        <summary>
+            <span>03</span>
+            <h2>Why transport is political</h2>
+        </summary>
+
+        <div class="learn-content">
+            <p>
+                Transport determines access to opportunity. A job can exist, but still be unreachable
+                if transport is too expensive, unsafe, unreliable, or far away.
+            </p>
+
+            <div class="learn-grid">
+                <div>
+                    <h3>What politics controls</h3>
+                    <p>
+                        Government affects road budgets, rail investment, taxi regulation,
+                        urban planning, public safety, fuel prices, and municipal transport systems.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>Why opportunity depends on it</h3>
+                    <p>
+                        Transport shapes who can attend interviews, get to school, work late,
+                        visit family, access clinics, and participate in the economy.
+                    </p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <strong>Everyday effect:</strong>
+                Many people do not only experience unemployment because jobs do not exist.
+                They experience it because opportunity is physically expensive to reach.
+            </div>
+        </div>
+    </details>
+
+    <details class="learn-card">
+        <summary>
+            <span>04</span>
+            <h2>Why unemployment changes relationships</h2>
+        </summary>
+
+        <div class="learn-content">
+            <p>
+                Unemployment is economic, emotional, social, and political.
+                It affects independence, dating, family pressure, confidence, identity, and hope.
+            </p>
+
+            <div class="learn-grid">
+                <div>
+                    <h3>What politics controls</h3>
+                    <p>
+                        Education policy, industrial policy, infrastructure, labour law,
+                        entrepreneurship support, public employment, and economic growth all shape work access.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>Why it becomes personal</h3>
+                    <p>
+                        Long-term unemployment can create shame, dependency, relationship tension,
+                        mental strain, delayed adulthood, and anger at the political system.
+                    </p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <strong>Yoh, Politics view:</strong>
+                A society with mass youth unemployment becomes politically restless because people start asking
+                whether democracy is actually improving their lives.
+            </div>
+        </div>
+    </details>
+
+    <details class="learn-card">
+        <summary>
+            <span>05</span>
+            <h2>Why municipalities matter more than people think</h2>
+        </summary>
+
+        <div class="learn-content">
+            <p>
+                National politics gets attention, but municipalities shape daily life directly.
+            </p>
+
+            <div class="learn-grid">
+                <div>
+                    <h3>What municipalities affect</h3>
+                    <p>
+                        Water, refuse removal, streetlights, local roads, billing, zoning,
+                        public spaces, and many local electricity systems.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>Why collapse feels immediate</h3>
+                    <p>
+                        When municipalities fail, politics appears as potholes, sewage,
+                        water outages, dark streets, illegal dumping, and broken public spaces.
+                    </p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <strong>Accountability lesson:</strong>
+                Understanding local government helps citizens know who to blame,
+                who to pressure, and who to vote out.
+            </div>
+        </div>
+    </details>
+
+    <details class="learn-card">
+        <summary>
+            <span>06</span>
+            <h2>Why corruption affects ordinary life</h2>
+        </summary>
+
+        <div class="learn-content">
+            <p>
+                Corruption is not only stolen money. It is stolen capacity.
+            </p>
+
+            <div class="learn-grid">
+                <div>
+                    <h3>What corruption weakens</h3>
+                    <p>
+                        Hospitals, schools, roads, policing, electricity, procurement,
+                        public trust, housing projects, and municipal services.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>Why trust collapses</h3>
+                    <p>
+                        When corruption becomes normal, citizens stop believing that rules matter.
+                        This creates anger, cynicism, and political instability.
+                    </p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <strong>The hidden damage:</strong>
+                Corruption teaches citizens that accountability is weak,
+                fairness is optional, and power matters more than rules.
+            </div>
+        </div>
+    </details>
+
+</section>
+{% endblock %}

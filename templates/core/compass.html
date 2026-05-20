@@ -1,1 +1,174 @@
-﻿{% extends "base.html" %} {% block content %} <section class="page-header"> <h1>Your Political DNA</h1> <p> Answer each question to discover your South African political party preference and Your Political DNA type. </p> </section> <section class="tool-layout"> <form method="POST" action="{% url 'compass' %}" class="quiz-card" id="compassForm"> {% csrf_token %} {% for question in questions %} <div class="question-box"> <div class="question-number"> {{ forloop.counter|stringformat:"02d" }} </div> <div class="question-content"> <h3>{{ question.text }}</h3> <div class="answer-row"> <label> <input type="radio" name="{{ question.id }}" value="2" required> Strongly Agree </label> <label> <input type="radio" name="{{ question.id }}" value="1" required> Agree </label> <label> <input type="radio" name="{{ question.id }}" value="0" required> Neutral </label> <label> <input type="radio" name="{{ question.id }}" value="-1" required> Disagree </label> <label> <input type="radio" name="{{ question.id }}" value="-2" required> Strongly Disagree </label> </div> </div> </div> {% endfor %} <button type="submit" class="btn primary compass-submit-btn"> Reveal My Political DNA </button> </form> </section> {% if result %} <div class="compass-popup-overlay active" id="resultsPopup"> <div class="compass-popup"> <button class="popup-close" onclick="closePopup()">×</button> <p class="editorial-label">Your results</p> <h2>Your Political DNA</h2> <section class="personality-result-card"> <h3>{{ result.personality.title }}</h3> <p>{{ result.personality.description }}</p> <div class="personality-party-line"> <strong>Likely party comfort zone:</strong> <span>{{ result.personality.likely_parties }}</span> </div> </section> <h2>Your Political Instincts</h2> <div class="result-grid"> <div class="result-box"> <h3>Economy</h3> <p>{{ result.economic_label }}</p> <strong>{{ result.axis_scores.economic }}/10</strong> </div> <div class="result-box"> <h3>Transformation</h3> <p>{{ result.transformation_label }}</p> <strong>{{ result.axis_scores.transformation }}/10</strong> </div> <div class="result-box"> <h3>Governance</h3> <p>{{ result.governance_label }}</p> <strong>{{ result.axis_scores.governance }}/10</strong> </div> <div class="result-box"> <h3>Crime</h3> <p>{{ result.crime_label }}</p> <strong>{{ result.axis_scores.crime }}/10</strong> </div> <div class="result-box"> <h3>Immigration</h3> <p>{{ result.immigration_label }}</p> <strong>{{ result.axis_scores.immigration }}/10</strong> </div> </div> <h2>Your Closest Political Party Matches</h2> <div class="match-list"> {% for match in result.matches %} <div class="match-card"> <h3> {% if match.party %} {{ match.party.name }} {% else %} {{ match.abbreviation }} {% endif %} </h3> <div class="match-bar"> <div style="width: {{ match.match }}%;"></div> </div> <p>{{ match.match }}% match</p> {% if match.party %} <a href="{% url 'party_detail' match.party.slug %}" class="read-more"> Read party imbizo → </a> {% endif %} </div> {% endfor %} </div> <h2>Other Political Traits</h2> <div class="secondary-personality-grid"> {% for item in result.secondary_personalities %} <div class="secondary-personality-card"> <h3>{{ item.title }}</h3> <p>{{ item.description }}</p> </div> {% endfor %} </div> </div> </div> {% endif %} <script> function closePopup() { const popup = document.getElementById("resultsPopup"); if (popup) { popup.classList.remove("active"); } } </script> {% endblock %} 
+﻿{% extends "base.html" %}
+
+{% block content %}
+
+<section class="page-header">
+    <h1>Your Political DNA</h1>
+
+    <p>
+        Answer each question to discover your South African political party preference
+        and Your Political DNA type.
+    </p>
+</section>
+
+<section class="tool-layout">
+
+    <form method="POST" action="{% url 'compass' %}" class="quiz-card" id="compassForm">
+        {% csrf_token %}
+
+        {% for question in questions %}
+        <div class="question-box">
+            <div class="question-number">
+                {{ forloop.counter|stringformat:"02d" }}
+            </div>
+
+            <div class="question-content">
+                <h3>{{ question.text }}</h3>
+
+                <div class="answer-row">
+                    <label>
+                        <input type="radio" name="{{ question.id }}" value="2" required>
+                        Strongly Agree
+                    </label>
+
+                    <label>
+                        <input type="radio" name="{{ question.id }}" value="1" required>
+                        Agree
+                    </label>
+
+                    <label>
+                        <input type="radio" name="{{ question.id }}" value="0" required>
+                        Neutral
+                    </label>
+
+                    <label>
+                        <input type="radio" name="{{ question.id }}" value="-1" required>
+                        Disagree
+                    </label>
+
+                    <label>
+                        <input type="radio" name="{{ question.id }}" value="-2" required>
+                        Strongly Disagree
+                    </label>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        <button type="submit" class="btn primary compass-submit-btn">
+            Reveal My Political DNA
+        </button>
+    </form>
+
+</section>
+
+{% if result %}
+<div class="compass-popup-overlay active" id="resultsPopup">
+
+    <div class="compass-popup">
+
+        <button class="popup-close" onclick="closePopup()">×</button>
+
+        <p class="editorial-label">Your results</p>
+
+        <h2>Your Political DNA</h2>
+
+        <section class="personality-result-card">
+            <h3>{{ result.personality.title }}</h3>
+            <p>{{ result.personality.description }}</p>
+
+            <div class="personality-party-line">
+                <strong>Likely party comfort zone:</strong>
+                <span>{{ result.personality.likely_parties }}</span>
+            </div>
+        </section>
+
+        <h2>Your Political Instincts</h2>
+
+        <div class="result-grid">
+            <div class="result-box">
+                <h3>Economy</h3>
+                <p>{{ result.economic_label }}</p>
+                <strong>{{ result.axis_scores.economic }}/10</strong>
+            </div>
+
+            <div class="result-box">
+                <h3>Transformation</h3>
+                <p>{{ result.transformation_label }}</p>
+                <strong>{{ result.axis_scores.transformation }}/10</strong>
+            </div>
+
+            <div class="result-box">
+                <h3>Governance</h3>
+                <p>{{ result.governance_label }}</p>
+                <strong>{{ result.axis_scores.governance }}/10</strong>
+            </div>
+
+            <div class="result-box">
+                <h3>Crime</h3>
+                <p>{{ result.crime_label }}</p>
+                <strong>{{ result.axis_scores.crime }}/10</strong>
+            </div>
+
+            <div class="result-box">
+                <h3>Immigration</h3>
+                <p>{{ result.immigration_label }}</p>
+                <strong>{{ result.axis_scores.immigration }}/10</strong>
+            </div>
+        </div>
+
+        <h2>Your Closest Political Party Matches</h2>
+
+        <div class="match-list">
+            {% for match in result.matches %}
+            <div class="match-card">
+                <h3>
+                    {% if match.party %}
+                        {{ match.party.name }}
+                    {% else %}
+                        {{ match.abbreviation }}
+                    {% endif %}
+                </h3>
+
+                <div class="match-bar">
+                    <div style="width: {{ match.match }}%;"></div>
+                </div>
+
+                <p>{{ match.match }}% match</p>
+
+                {% if match.party %}
+                <a href="{% url 'party_detail' match.party.slug %}" class="read-more">
+                    Read party imbizo →
+                </a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <h2>Other Political Traits</h2>
+
+        <div class="secondary-personality-grid">
+            {% for item in result.secondary_personalities %}
+            <div class="secondary-personality-card">
+                <h3>{{ item.title }}</h3>
+                <p>{{ item.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+</div>
+{% endif %}
+
+<script>
+function closePopup() {
+    const popup = document.getElementById("resultsPopup");
+
+    if (popup) {
+        popup.classList.remove("active");
+    }
+}
+</script>
+
+{% endblock %}
