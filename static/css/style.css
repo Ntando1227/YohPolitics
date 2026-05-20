@@ -3758,3 +3758,30 @@ a[href*="parties"] {
         grid-template-columns: 1fr;
     }
 }
+
+/* PARTIES PAGE TEXT COLOR FIX */
+
+.party-analysis-block,
+.party-policy-card,
+.policy-inner-grid div,
+.party-imbizo-hero,
+.party-imbizo-meta span {
+    color: #000000 !important;
+}
+
+.party-analysis-block h3,
+.party-policy-card h3,
+.policy-inner-grid h4,
+.party-imbizo-hero h1,
+.party-imbizo-hero p,
+.party-policy-card p,
+.policy-inner-grid p,
+.party-analysis-block p {
+    color: #000000 !important;
+}
+
+.party-policy-card span,
+.party-imbizo-label {
+    color: #ffffff !important;
+}
+
