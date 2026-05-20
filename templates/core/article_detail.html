@@ -1,45 +1,4 @@
-﻿{% extends "base.html" %}
-
-{% block content %}
-<section class="page-header">
-    <h1>{{ article.title }}</h1>
-    <p>{{ article.summary }}</p>
-</section>
-
-<section class="article-clean-layout">
-
-    <article class="article-clean-body">
-        <div class="article-clean-meta">
-            <span>{{ article.category }}</span>
-            <p>Written by That Corporate Gent</p>
-        </div>
-
-        {{ article.body|linebreaks }}
-    </article>
-
-    <aside class="article-clean-sidebar">
-        <div class="sidebar-box">
-            <h2>Yoh, Politics view</h2>
-            <p>
-                This platform does not tell people who to vote for.
-                It helps people understand the ideas, emotions, fears,
-                and social pressures behind South African politics.
-            </p>
-        </div>
-
-        {% if related_articles %}
-        <div class="sidebar-box">
-            <h2>Related commentary</h2>
-
-            {% for related in related_articles %}
-            <a href="{% url 'article_detail' related.id %}" class="related-link">
-                <span>{{ related.category }}</span>
-                <strong>{{ related.title }}</strong>
-            </a>
-            {% endfor %}
-        </div>
-        {% endif %}
-    </aside>
-
-</section>
-{% endblock %}
+﻿{% extends "base.html" %} {% block content %}
+<section class="page-header"> <h1>{{ article.title }}</h1> <p>{{ article.summary }}</p>
+</section> <section class="article-clean-layout"> <article class="article-clean-body"> <div class="article-clean-meta"> <span>{{ article.category }}</span> <p>Written by That Corporate Gent</p> </div> {{ article.body|linebreaks }} </article> <aside class="article-clean-sidebar"> <div class="sidebar-box"> <h2>Yoh, Politics view</h2> <p> This platform does not tell people who to vote for. It helps people understand the ideas, emotions, fears, and social pressures behind South African politics. </p> </div> {% if related_articles %} <div class="sidebar-box"> <h2>Related commentary</h2> {% for related in related_articles %} <a href="{% url 'article_detail' related.id %}" class="related-link"> <span>{{ related.category }}</span> <strong>{{ related.title }}</strong> </a> {% endfor %} </div> {% endif %} </aside> </section>
+{% endblock %} 

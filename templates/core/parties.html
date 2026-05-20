@@ -1,42 +1,4 @@
-﻿{% extends "base.html" %}
-
-{% block content %}
-<section class="page-header">
-    <h1>Political Parties</h1>
-    <p>
-        Explore South African political parties as civic dossiers: ideology, worldview,
-        governance style, economic approach, equality views, crime politics, immigration views,
-        and youth relevance.
-    </p>
-</section>
-
-<section class="party-page-layout">
-
-    {% for party in parties %}
-        <a href="{% url 'party_detail' party.slug %}" class="party-dossier-card">
-            <div class="party-dossier-top">
-                <span>{{ party.political_position }}</span>
-                <h2>{{ party.abbreviation }}</h2>
-                <h3>{{ party.name }}</h3>
-            </div>
-
-            <p>{{ party.short_explainer|truncatewords:38 }}</p>
-
-            <div class="party-dossier-meta">
-                <div>
-                    <strong>Ideology</strong>
-                    <small>{{ party.ideology|truncatewords:10 }}</small>
-                </div>
-
-                <div>
-                    <strong>Youth Appeal</strong>
-                    <small>{{ party.youth_appeal }}/10</small>
-                </div>
-            </div>
-
-            <p class="read-more">Open party dossier →</p>
-        </a>
-    {% endfor %}
-
-</section>
-{% endblock %}
+﻿{% extends "base.html" %} {% block content %}
+<section class="page-header"> <h1>Political Parties</h1> <p> Explore South African political parties as civic dossiers: ideology, worldview, governance style, economic approach, equality views, crime politics, immigration views, and youth relevance. </p>
+</section> <section class="party-page-layout"> {% for party in parties %} <a href="{% url 'party_detail' party.slug %}" class="party-dossier-card"> <div class="party-dossier-top"> <span>{{ party.political_position }}</span> <h2>{{ party.abbreviation }}</h2> <h3>{{ party.name }}</h3> </div> <p>{{ party.short_explainer|truncatewords:38 }}</p> <div class="party-dossier-meta"> <div> <strong>Ideology</strong> <small>{{ party.ideology|truncatewords:10 }}</small> </div> <div> <strong>Youth Appeal</strong> <small>{{ party.youth_appeal }}/10</small> </div> </div> <p class="read-more">Open party dossier →</p> </a> {% endfor %} </section>
+{% endblock %} 
