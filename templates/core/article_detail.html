@@ -1,35 +1,66 @@
 ﻿{% extends "base.html" %}
 
 {% block content %}
+
 <section class="page-header">
+    <p class="home-kicker">Real Talk by That Corporate Gent</p>
     <h1>{{ article.title }}</h1>
     <p>{{ article.summary }}</p>
 </section>
 
-<section class="article-clean-layout">
+<section class="article-page-layout">
 
-    <article class="article-clean-body">
-        <div class="article-clean-meta">
-            <span>{{ article.category }}</span>
-            <p>Written by That Corporate Gent</p>
+    <article class="article-main-card">
+
+        <div class="article-meta-pill">
+            {{ article.category }}
         </div>
 
-        {{ article.body|linebreaks }}
+        <div class="article-block">
+            <h2>What is actually happening politically?</h2>
+            <p>{{ article.real_issue }}</p>
+        </div>
+
+        <div class="article-block">
+            <h2>The deeper institutional problem</h2>
+            <p>{{ article.institutional_issue }}</p>
+        </div>
+
+        <div class="article-block">
+            <h2>Why ordinary people are reacting emotionally</h2>
+            <p>{{ article.public_emotion }}</p>
+        </div>
+
+        <div class="article-block">
+            <h2>The economic and social implications</h2>
+            <p>{{ article.economic_effect }}</p>
+        </div>
+
+        <div class="article-block">
+            <h2>The political contradiction</h2>
+            <p>{{ article.contradiction }}</p>
+        </div>
+
+        <div class="article-block dark">
+            <p class="home-kicker">Real Talk</p>
+            <h2>The bottom line</h2>
+            <p>{{ article.real_talk }}</p>
+        </div>
+
     </article>
 
-    <aside class="article-clean-sidebar">
+    <aside class="article-sidebar-clean">
+
         <div class="sidebar-box">
             <h2>Yoh, Politics view</h2>
             <p>
                 This platform does not tell people who to vote for.
-                It helps people understand the ideas, emotions, fears,
-                and social pressures behind South African politics.
+                It explains the forces, emotions, institutions and contradictions underneath South African politics.
             </p>
         </div>
 
-        {% if related_articles %}
         <div class="sidebar-box">
-            <h2>Related commentary</h2>
+            <h2>More Real Talk</h2>
 
             {% for related in related_articles %}
             <a href="{% url 'article_detail' related.id %}" class="related-link">
@@ -38,8 +69,9 @@
             </a>
             {% endfor %}
         </div>
-        {% endif %}
+
     </aside>
 
 </section>
+
 {% endblock %}

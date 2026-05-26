@@ -2,160 +2,37 @@
 
 {% block content %}
 
-<section class="page-header commentary-header">
+<section class="page-header">
+    <h1>Political Commentary</h1>
 
-    <p class="editorial-label">
-        Real Talk by That Corporate Gent
+    <p>
+        Commentary and analysis on South African politics,
+        institutions, elections, public debate and society.
     </p>
-
-    <h1>
-        What's Really Going On
-    </h1>
-
-    <p class="page-intro">
-        Politics is rarely only about policy.
-        Beneath every headline sits a deeper struggle:
-        power, class, race, institutions, economics, identity,
-        fear, survival and the future of the state itself.
-    </p>
-
 </section>
 
+<section class="home-section">
 
-<section class="real-talk-layout">
+    <div class="section-heading">
+        <p class="home-kicker">Political Commentary</p>
+        <h2>Analysis and interpretation</h2>
+    </div>
 
-    {% for article in commentary_articles %}
+    <div class="home-feature-grid updated">
 
-    <article class="real-talk-feature">
+        {% for article in commentary_articles %}
+        <a href="{% url 'article_detail' article.id %}" class="home-feature-card">
 
-        <div class="real-talk-meta">
-            <span>{{ article.category }}</span>
-            <span>South African Political Analysis</span>
-        </div>
+            <span>{{ forloop.counter|stringformat:"02d" }}</span>
 
-        <h2>
-            {{ article.title }}
-        </h2>
+            <h3>{{ article.title }}</h3>
 
-        <p class="feature-summary">
-            {{ article.summary }}
-        </p>
+            <p>{{ article.summary }}</p>
 
+        </a>
+        {% endfor %}
 
-        <section class="deep-analysis-block">
-
-            <div class="analysis-section">
-
-                <h3>
-                    What is actually happening politically?
-                </h3>
-
-                <p>
-                    {{ article.real_issue }}
-                </p>
-
-            </div>
-
-
-            <div class="analysis-section">
-
-                <h3>
-                    The deeper institutional problem
-                </h3>
-
-                <p>
-                    {{ article.institutional_issue }}
-                </p>
-
-            </div>
-
-
-            <div class="analysis-section">
-
-                <h3>
-                    The crisis underneath the headlines
-                </h3>
-
-                <div class="real-talk-list-block">
-
-                    <ul>
-                        <li>Loadshedding</li>
-                        <li>Broken roads</li>
-                        <li>Collapsed municipalities</li>
-                        <li>Water shortages</li>
-                        <li>Crime</li>
-                        <li>NSFAS failures</li>
-                        <li>Corruption scandals</li>
-                        <li>Unemployment</li>
-                    </ul>
-
-                </div>
-
-                <p>
-                    These are often discussed as separate crises.
-                    But politically, they point toward a deeper institutional issue:
-                    declining trust in the state's ability to organise society effectively.
-                </p>
-
-            </div>
-
-
-            <div class="analysis-section">
-
-                <h3>
-                    Why ordinary people are reacting emotionally
-                </h3>
-
-                <p>
-                    {{ article.public_emotion }}
-                </p>
-
-            </div>
-
-
-            <div class="analysis-section">
-
-                <h3>
-                    The economic and social implications
-                </h3>
-
-                <p>
-                    {{ article.economic_effect }}
-                </p>
-
-            </div>
-
-
-            <div class="analysis-section">
-
-                <h3>
-                    The political contradiction
-                </h3>
-
-                <p>
-                    {{ article.contradiction }}
-                </p>
-
-            </div>
-
-
-            <div class="analysis-section dark">
-
-                <h3>
-                    Real Talk
-                </h3>
-
-                <p>
-                    {{ article.real_talk }}
-                </p>
-
-            </div>
-
-        </section>
-
-    </article>
-
-    {% endfor %}
+    </div>
 
 </section>
 

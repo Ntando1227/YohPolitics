@@ -2,288 +2,117 @@
 
 {% block content %}
 
-<section class="editorial-hero">
-
-    <div class="editorial-overlay">
-
-        <p class="editorial-tag">
-            YOH, POLITICS IMBIZO
-        </p>
-
-        <h1>
-            {{ party.name }}
-        </h1>
-
-        <p class="editorial-subtitle">
-            {{ party.abbreviation }} |
-            {{ party.political_position }} |
-            {{ party.ideology }}
-        </p>
-
-        <div class="hero-summary">
-            {{ party.short_explainer }}
-        </div>
-
-    </div>
-
+<section class="page-header">
+    <p class="home-kicker">Yoh, Politics Imbizo</p>
+    <h1>{{ party.name }}</h1>
+    <p>
+        {{ party.abbreviation }}{% if party.political_position %} | {{ party.political_position }}{% endif %}
+        {% if party.ideology %} | {{ party.ideology }}{% endif %}
+    </p>
 </section>
 
 <section class="longform-layout">
 
-    <section class="editorial-block">
-
-        <p class="editorial-label">
-            Political Identity
-        </p>
-
-        <h2>
-            What kind of political movement is this?
-        </h2>
-
-        <p>
-            {{ party.political_identity }}
-        </p>
-
+    <section class="party-yoh-take">
+        <p class="editorial-label">Party overview</p>
+        <h2>What this party is arguing</h2>
+        <p>{{ party.short_explainer|default:"This party profile is still being developed." }}</p>
     </section>
 
-    <section class="editorial-block dark">
+    <section class="party-analysis-grid">
 
-        <p class="editorial-label">
-            Vision of Society
-        </p>
-
-        <h2>
-            The kind of South Africa this party wants to build
-        </h2>
-
-        <p>
-            {{ party.society_vision }}
-        </p>
-
-    </section>
-
-    <section class="editorial-grid">
-
-        <div class="editorial-card">
-
-            <h3>
-                Economic worldview
-            </h3>
-
-            <p>
-                {{ party.economic_approach }}
-            </p>
-
+        <div class="party-analysis-block">
+            <h3>Political Identity</h3>
+            <p>{{ party.political_identity|default:"No political identity analysis has been added yet." }}</p>
         </div>
 
-        <div class="editorial-card">
-
-            <h3>
-                Equality and transformation
-            </h3>
-
-            <p>
-                {{ party.equality_view }}
-            </p>
-
+        <div class="party-analysis-block">
+            <h3>The Society It Wants</h3>
+            <p>{{ party.society_vision|default:"No society vision analysis has been added yet." }}</p>
         </div>
 
-        <div class="editorial-card">
+        <div class="party-analysis-block">
+            <h3>Economic Worldview</h3>
+            <p>{{ party.economic_approach|default:"No economic worldview has been added yet." }}</p>
+        </div>
 
-            <h3>
-                Immigration and borders
-            </h3>
+        <div class="party-analysis-block">
+            <h3>Equality and Transformation</h3>
+            <p>{{ party.equality_view|default:"No equality and transformation analysis has been added yet." }}</p>
+        </div>
 
-            <p>
-                {{ party.immigration_view }}
-            </p>
+        <div class="party-analysis-block">
+            <h3>Crime and Safety</h3>
+            <p>{{ party.crime_view|default:"No crime and safety analysis has been added yet." }}</p>
+        </div>
 
+        <div class="party-analysis-block">
+            <h3>Immigration View</h3>
+            <p>{{ party.immigration_view|default:"No immigration analysis has been added yet." }}</p>
+        </div>
+
+        <div class="party-analysis-block">
+            <h3>Governance Style</h3>
+            <p>{{ party.governance_style|default:"No governance analysis has been added yet." }}</p>
+        </div>
+
+        <div class="party-analysis-block">
+            <h3>Historical Context</h3>
+            <p>{{ party.historical_context|default:"No historical context has been added yet." }}</p>
         </div>
 
     </section>
 
-    <section class="editorial-grid">
-
-        <div class="editorial-card">
-
-            <h3>
-                Crime and public safety
-            </h3>
-
-            <p>
-                {{ party.crime_view }}
-            </p>
-
-        </div>
-
-        <div class="editorial-card">
-
-            <h3>
-                Society and culture
-            </h3>
-
-            <p>
-                {{ party.social_approach }}
-            </p>
-
-        </div>
-
-        <div class="editorial-card">
-
-            <h3>
-                Government and political power
-            </h3>
-
-            <p>
-                {{ party.governance_style }}
-            </p>
-
-        </div>
-
+    <section class="party-yoh-take">
+        <p class="editorial-label">Yoh, Politics Reading</p>
+        <h2>The deeper political meaning</h2>
+        <p>{{ party.yoh_commentary|default:"No Yoh, Politics commentary has been added yet." }}</p>
     </section>
 
-    <section class="editorial-block">
+    <section class="manifesto-policy-list">
+        <h2>Policy Breakdown</h2>
 
-        <p class="editorial-label">
-            Young South Africans
-        </p>
+        {% for policy in policies %}
+        <article class="party-policy-card">
+            <span>{{ policy.category }}</span>
 
-        <h2>
-            Why this party attracts some young people — and loses others
-        </h2>
+            <h3>{{ policy.policy_title }}</h3>
 
-        <p>
-            {{ party.youth_relevance }}
-        </p>
+            <div class="policy-inner-grid">
+                <div>
+                    <h4>What the manifesto argues</h4>
+                    <p>{{ policy.manifesto_position }}</p>
+                </div>
 
-    </section>
-
-    {% for policy in policies %}
-
-    <section class="manifesto-story">
-
-        <div class="story-header">
-
-            <span class="story-category">
-                {{ policy.category }}
-            </span>
-
-            <h2>
-                {{ policy.policy_title }}
-            </h2>
-
-        </div>
-
-        <div class="story-section">
-
-            <h3>
-                What the manifesto is actually arguing for
-            </h3>
-
-            <p>
-                {{ policy.manifesto_position }}
-            </p>
-
-        </div>
-
-        <div class="story-section highlight">
-
-            <h3>
-                The deeper political argument underneath the policy
-            </h3>
-
-            <p>
-                {{ policy.simplified_explanation }}
-            </p>
-
-        </div>
-
-        <div class="story-columns">
-
-            <div class="story-box">
-
-                <h3>
-                    Why supporters defend this idea
-                </h3>
-
-                <p>
-                    {{ policy.possible_advantages }}
-                </p>
-
+                <div>
+                    <h4>What it could mean in real life</h4>
+                    <p>{{ policy.simplified_explanation }}</p>
+                </div>
             </div>
 
-            <div class="story-box">
+            <div class="policy-inner-grid">
+                <div>
+                    <h4>Who may benefit</h4>
+                    <p>{{ policy.possible_advantages }}</p>
+                </div>
 
-                <h3>
-                    Why critics worry about it
-                </h3>
-
-                <p>
-                    {{ policy.possible_concerns }}
-                </p>
-
+                <div>
+                    <h4>Concerns and debates</h4>
+                    <p>{{ policy.possible_concerns }}</p>
+                </div>
             </div>
 
-        </div>
-
-        <div class="story-section impact">
-
-            <h3>
-                Which South Africans could feel this most?
-            </h3>
-
-            <p>
-                {{ policy.affected_groups }}
-            </p>
-
-        </div>
-
-        <div class="story-section commentary">
-
-            <h3>
-                Yoh, Politics analysis
-            </h3>
-
-            <p>
-                {{ policy.yoh_analysis }}
-            </p>
-
-        </div>
-
-    </section>
-
-    {% endfor %}
-
-    <section class="editorial-block">
-
-        <p class="editorial-label">
-            Public Debate
-        </p>
-
-        <h2>
-            Why this party divides opinion
-        </h2>
-
-        <div class="public-debate-text">
-            {{ party.common_criticisms|linebreaks }}
-        </div>
-
-    </section>
-
-    <section class="editorial-block final-block">
-
-        <p class="editorial-label">
-            Yoh, Politics View
-        </p>
-
-        <h2>
-            The bigger political story behind this party
-        </h2>
-
-        <p>
-            {{ party.yoh_commentary }}
-        </p>
-
+            <div class="policy-yoh-box">
+                <h4>Yoh, Politics analysis</h4>
+                <p>{{ policy.yoh_analysis }}</p>
+            </div>
+        </article>
+        {% empty %}
+        <article class="party-policy-card">
+            <h3>No policy breakdown yet</h3>
+            <p>This party does not have policy breakdowns seeded yet.</p>
+        </article>
+        {% endfor %}
     </section>
 
 </section>

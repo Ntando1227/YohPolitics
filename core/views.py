@@ -1,5 +1,5 @@
-﻿from django.shortcuts import render
-from .models import Party
+﻿from django.shortcuts import render, get_object_or_404
+from .models import Party, ManifestoPolicy
 
 
 POLICY_ANALYZER_DATA = {
@@ -112,8 +112,8 @@ def parties(request):
 
 
 def party_detail(request, slug):
-    party = Party.objects.get(slug=slug)
-    policies = party.manifestopolicy_set.all()
+    party = get_object_or_404(Party, slug=slug)
+    policies = ManifestoPolicy.objects.filter(party=party)
 
     return render(request, "core/party_detail.html", {
         "party": party,
