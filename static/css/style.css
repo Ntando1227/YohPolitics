@@ -3814,3 +3814,239 @@ a[href*="parties"] {
     line-height: 1.6 !important;
     font-weight: 700 !important;
 }
+
+/* REAL TALK DEEP ANALYSIS */
+
+.real-talk-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.real-talk-feature {
+    background: #f4efe6;
+    border-radius: 22px;
+    padding: 42px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+}
+
+.real-talk-meta {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+}
+
+.real-talk-meta span {
+    background: #182233;
+    color: #f7f3eb;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+}
+
+.real-talk-feature h2 {
+    color: #182233;
+    font-size: 46px;
+    line-height: 1.1;
+    margin-bottom: 22px;
+}
+
+.feature-summary {
+    color: #303a46;
+    font-size: 20px;
+    line-height: 1.9;
+    margin-bottom: 32px;
+    font-weight: 500;
+}
+
+.deep-analysis-block {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+.analysis-section {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 30px;
+    border-left: 6px solid #9b7a2f;
+}
+
+.analysis-section.dark {
+    background: #182233;
+}
+
+.analysis-section h3 {
+    color: #182233;
+    font-size: 28px;
+    margin-bottom: 14px;
+}
+
+.analysis-section.dark h3 {
+    color: #f7f3eb;
+}
+
+.analysis-section p {
+    color: #303a46;
+    font-size: 18px;
+    line-height: 2;
+}
+
+.analysis-section.dark p {
+    color: #f7f3eb;
+}
+
+@media screen and (max-width: 900px) {
+
+    .real-talk-feature {
+        padding: 28px;
+    }
+
+    .real-talk-feature h2 {
+        font-size: 34px;
+    }
+
+    .analysis-section {
+        padding: 24px;
+    }
+
+}
+
+/* REAL TALK LONG FORM ARTICLES */
+
+.real-talk-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 42px;
+}
+
+.real-talk-feature {
+    background: #f4efe6;
+    border-radius: 24px;
+    padding: 42px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+.real-talk-meta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.real-talk-meta span {
+    background: #182233;
+    color: #f5f1e8;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.real-talk-feature h2 {
+    color: #182233;
+    font-size: 50px;
+    line-height: 1.1;
+    margin-bottom: 24px;
+}
+
+.feature-summary {
+    color: #303a46;
+    font-size: 21px;
+    line-height: 2;
+    margin-bottom: 36px;
+    font-weight: 500;
+}
+
+.deep-analysis-block {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.analysis-section {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 32px;
+    border-left: 6px solid #9b7a2f;
+}
+
+.analysis-section.dark {
+    background: #182233;
+}
+
+.analysis-section h3 {
+    color: #182233;
+    font-size: 30px;
+    margin-bottom: 16px;
+    line-height: 1.3;
+}
+
+.analysis-section.dark h3 {
+    color: #f5f1e8;
+}
+
+.analysis-section p {
+    color: #303a46;
+    font-size: 18px;
+    line-height: 2;
+}
+
+.analysis-section.dark p {
+    color: #f5f1e8;
+}
+
+
+/* CLEAN LIST BLOCKS */
+
+.real-talk-list-block {
+    background: #ece3d4;
+    border-left: 6px solid #9b7a2f;
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin: 24px 0;
+}
+
+.real-talk-list-block ul {
+    margin: 0;
+    padding-left: 26px;
+}
+
+.real-talk-list-block li {
+    color: #182233;
+    font-size: 18px;
+    line-height: 2;
+    font-weight: 600;
+}
+
+
+/* MOBILE */
+
+@media screen and (max-width: 900px) {
+
+    .real-talk-feature {
+        padding: 28px;
+    }
+
+    .real-talk-feature h2 {
+        font-size: 36px;
+    }
+
+    .analysis-section {
+        padding: 24px;
+    }
+
+    .analysis-section h3 {
+        font-size: 24px;
+    }
+
+    .analysis-section p {
+        font-size: 16px;
+    }
+
+}

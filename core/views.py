@@ -1,44 +1,104 @@
-﻿from django.shortcuts import render, get_object_or_404
-from .models import Party, CommentaryArticle, ManifestoPolicy
+﻿from django.shortcuts import render
+from .models import Party
 
 
-COMPASS_QUESTIONS = [
-    {"id": "q1", "text": "The state should play a much bigger role in creating jobs directly.", "axis": "economic", "left": 2, "right": -1},
-    {"id": "q2", "text": "Private businesses are usually better than government at growing the economy.", "axis": "economic", "left": -1, "right": 2},
-    {"id": "q3", "text": "Land reform should move faster, even if it makes investors uncomfortable.", "axis": "transformation", "left": 2, "right": -1},
-    {"id": "q4", "text": "South Africa needs clean, professional government before anything else can work.", "axis": "governance", "left": 0, "right": 1},
-    {"id": "q5", "text": "BEE and employment equity are still necessary to correct apartheid inequality.", "axis": "transformation", "left": 2, "right": -1},
-    {"id": "q6", "text": "Crime should be handled with much stricter policing and sentencing.", "axis": "crime", "left": -1, "right": 2},
-    {"id": "q7", "text": "Immigration laws should be enforced more strictly.", "axis": "immigration", "left": -1, "right": 2},
-    {"id": "q8", "text": "South Africa should avoid blaming immigrants for problems caused by corruption and inequality.", "axis": "immigration", "left": 2, "right": -1},
-    {"id": "q9", "text": "Free education should be expanded, even if it requires higher public spending.", "axis": "economic", "left": 2, "right": -1},
-    {"id": "q10", "text": "Government jobs and tenders should be based mainly on merit, not political loyalty.", "axis": "governance", "left": 0, "right": 2},
-    {"id": "q11", "text": "Traditional leaders and community structures should have more influence in governance.", "axis": "social", "left": 0, "right": 2},
-    {"id": "q12", "text": "South Africa needs radical transformation, not slow reform.", "axis": "transformation", "left": 3, "right": -1},
-]
+POLICY_ANALYZER_DATA = {
+
+    "nationalisation": {
+        "title": "Nationalisation",
+        "summary": "State ownership of major industries such as mines, banks, energy and strategic sectors.",
+
+        "real_argument": "Nationalisation is not fundamentally about ownership alone. It is about sovereignty, developmental control, and the political question of who directs accumulation in society. The underlying argument is that South Africa's democratic transition transferred political authority without meaningfully restructuring economic power. Supporters therefore argue that leaving strategic sectors such as mining, banking, energy and logistics under concentrated private ownership permanently weakens the state's ability to drive redistribution, industrialisation and long-term developmental planning.",
+
+        "public_support": "Support for nationalisation emerges from a historical reading of the South African economy. Many citizens observe that despite political democracy, wealth concentration, racial inequality and ownership patterns remain structurally intact. Nationalisation therefore resonates not only economically, but symbolically. It communicates the idea that political liberation without economic control is incomplete.",
+
+        "public_concern": "The core concern is institutional rather than ideological. Critics question whether the South African state currently possesses the bureaucratic capacity, technical competence, procurement integrity and political insulation required to manage large-scale state ownership effectively. State capture significantly damaged public confidence in the state's developmental ability.",
+
+        "cost": "Extremely expensive. State acquisition, restructuring, legal disputes, compensation battles, operational funding and management reform would require massive long-term fiscal commitment.",
+
+        "difficulty": "Very high. Nationalisation requires institutional coordination, sector expertise, legislative restructuring and administrative competence at a scale the current state often struggles to demonstrate.",
+
+        "corruption_risk": "High. Expanding state control without strengthening governance systems could create larger opportunities for procurement abuse, cadre deployment and elite capture.",
+
+        "winners": "Potential beneficiaries include organised labour, historically excluded communities, developmental sectors and citizens who support stronger public ownership.",
+
+        "losers": "Large corporations, investors dependent on policy certainty, shareholders and sectors reliant on private-sector confidence may experience instability or resistance.",
+
+        "state_capacity": "This policy succeeds or fails on state capacity. Without institutional competence, nationalisation risks expanding dysfunction rather than developmental transformation.",
+
+        "daily_life": "If managed effectively, citizens could see expanded infrastructure investment, strategic planning and stronger developmental coordination. If managed poorly, the result could be declining services, inefficiency and economic instability.",
+
+        "political_risk": "The political risk is that nationalisation becomes rhetorically revolutionary but administratively hollow. States can inherit ownership without inheriting operational capacity. In that scenario, public ownership may deepen fiscal pressure without producing developmental transformation.",
+
+        "hard_question": "Can South Africa construct a capable developmental state before attempting large-scale expansion of state ownership?",
+
+        "yoh_view": "What is really happening here is a struggle over the meaning of liberation itself. Nationalisation debates are ultimately arguments about whether democracy should merely change governments, or fundamentally reorganise economic power. The emotional force behind the policy comes from the perception that the economy still feels socially distant from the majority population."
+    },
 
 
-PARTY_PROFILES = {
-    "EFF": {"economic": 9, "transformation": 10, "governance": 5, "crime": 5, "immigration": 3, "social": 5},
-    "ANC": {"economic": 7, "transformation": 8, "governance": 5, "crime": 6, "immigration": 5, "social": 5},
-    "DA": {"economic": 3, "transformation": 3, "governance": 9, "crime": 8, "immigration": 6, "social": 5},
-    "ActionSA": {"economic": 4, "transformation": 5, "governance": 8, "crime": 9, "immigration": 9, "social": 6},
-    "RISE": {"economic": 6, "transformation": 7, "governance": 8, "crime": 7, "immigration": 5, "social": 6},
-    "GOOD": {"economic": 6, "transformation": 7, "governance": 7, "crime": 6, "immigration": 5, "social": 7},
-    "IFP": {"economic": 5, "transformation": 5, "governance": 7, "crime": 7, "immigration": 6, "social": 8},
-    "MK": {"economic": 7, "transformation": 8, "governance": 4, "crime": 7, "immigration": 7, "social": 8},
-    "FF+": {"economic": 3, "transformation": 2, "governance": 7, "crime": 8, "immigration": 8, "social": 8},
-    "PA": {"economic": 4, "transformation": 5, "governance": 6, "crime": 10, "immigration": 10, "social": 8},
-}
+    "free_education": {
+        "title": "Free Education",
+        "summary": "Government-funded higher education and reduced financial barriers to learning.",
+
+        "real_argument": "Free education is fundamentally an argument about social reproduction and intergenerational inequality. The policy assumes that access to higher education is no longer a luxury, but a structural requirement for economic participation in a technologically advanced economy. Supporters therefore argue that excluding poor students through fees reproduces class inequality across generations.",
+
+        "public_support": "The policy resonates because education occupies a unique emotional position in South African political culture. For many households, education represents the primary imagined route out of poverty, unemployment and historical exclusion. Student debt is therefore experienced not only financially, but psychologically and politically.",
+
+        "public_concern": "The concern is whether expansion can occur without institutional degradation. Universities require stable funding, research capacity, infrastructure investment, staffing expansion and administrative competence. A system that increases numerical access while collapsing academically can produce mass disillusionment rather than mobility.",
+
+        "cost": "Very expensive. Sustainable funding would require long-term fiscal expansion, higher taxation, spending reprioritisation or economic growth strong enough to support expanded social investment.",
+
+        "difficulty": "High. Expanding access while protecting quality, infrastructure, accommodation and institutional capacity is administratively complex.",
+
+        "corruption_risk": "Moderate to high. Student funding systems can become vulnerable to administrative failure, ghost beneficiaries, procurement abuse and delayed payments.",
+
+        "winners": "Working-class students, poor households, rural youth, first-generation graduates and historically excluded communities.",
+
+        "losers": "Taxpayers facing increased fiscal pressure and institutions forced to absorb expansion without sufficient resources may experience strain.",
+
+        "state_capacity": "The policy depends heavily on competent administration, reliable funding pipelines and long-term educational planning.",
+
+        "daily_life": "Students may experience reduced financial anxiety, improved access and greater educational mobility. However, underfunded expansion could also increase overcrowding and declining institutional quality.",
+
+        "political_risk": "The political danger is that governments may frame access as transformation while quietly underfunding institutional quality. This creates a situation where students enter the system but graduate into weak labour absorption and declining institutional prestige.",
+
+        "hard_question": "Can South Africa massify higher education without reproducing a low-quality, underfunded system that ultimately fails working-class students?",
+
+        "yoh_view": "The deeper issue here is not simply fees. It is whether post-apartheid South Africa has built an economy capable of converting educational expansion into meaningful economic inclusion. Degrees alone cannot resolve structural unemployment."
+    },
 
 
-PERSONA_DATA = {
-    "student": {"title": "University or TVET Student", "intro": "Your biggest political concerns are likely education funding, NSFAS stability, accommodation, transport, safety, graduate unemployment, and whether education actually leads to work.", "focus": ["Education", "Youth Development", "Employment", "Social Justice"]},
-    "unemployed": {"title": "Unemployed Young Person", "intro": "Your politics is shaped by job access, transport money, data costs, skills programmes, public employment, entrepreneurship support, and whether parties understand the emotional cost of unemployment.", "focus": ["Employment", "Youth Development", "Economy", "Social Support"]},
-    "entrepreneur": {"title": "Township Entrepreneur or Informal Trader", "intro": "Your concerns include crime, electricity, municipal permits, access to funding, trading space, transport, digital access, and whether parties take small businesses seriously.", "focus": ["Economy", "Employment", "Crime", "Governance"]},
-    "worker": {"title": "Worker or Jobseeker", "intro": "Your interests include wages, job security, worker protections, economic growth, transport, safety, and whether parties prioritise decent work or business flexibility.", "focus": ["Employment", "Economy", "Crime", "Social Justice"]},
-    "rural": {"title": "Rural Resident", "intro": "Your politics is shaped by land, roads, water, clinics, schools, traditional leadership, agriculture, local government, and whether national promises reach rural communities.", "focus": ["Land / Property / Transformation", "Governance", "Social Justice", "Economy"]},
-    "business": {"title": "Small Business Owner", "intro": "Your concerns include tax, regulation, corruption, electricity, crime, consumer spending, labour rules, border management, and whether the economy is stable enough to grow.", "focus": ["Economy", "Crime", "Governance", "Immigration"]},
+    "land_expropriation": {
+        "title": "Land Expropriation",
+        "summary": "Redistribution of land through expropriation with reduced or no compensation.",
+
+        "real_argument": "Land expropriation is fundamentally a debate about historical justice, territorial belonging and the unfinished nature of post-apartheid restructuring. Supporters argue that racial land concentration remains one of the clearest visible continuities between apartheid and democracy. Land therefore becomes both a material and symbolic question.",
+
+        "public_support": "Support emerges because land carries meanings beyond economics. It represents dignity, ancestry, citizenship, identity, security and historical recognition. For many South Africans, unresolved land inequality signifies that historical dispossession was politically acknowledged but never materially corrected.",
+
+        "public_concern": "The concern is whether redistribution can occur without administrative collapse, elite capture or agricultural instability. Internationally, land reform outcomes vary dramatically depending on institutional planning, beneficiary support, infrastructure, financing and post-transfer governance.",
+
+        "cost": "Moderate to very high depending on implementation design, agricultural support systems and legal disputes.",
+
+        "difficulty": "Extremely high. Successful redistribution requires land audits, infrastructure, water access, financing, training and long-term governance support.",
+
+        "corruption_risk": "High. Redistribution programmes globally are vulnerable to politically connected beneficiaries and elite capture.",
+
+        "winners": "Landless communities, emerging farmers, housing applicants and historically dispossessed populations.",
+
+        "losers": "Commercial landholders, sectors dependent on agricultural certainty and investors worried about legal stability.",
+
+        "state_capacity": "The state would need strong institutional systems for allocation, mediation, support and agricultural planning.",
+
+        "daily_life": "If implemented effectively, redistribution could expand housing access, farming opportunities and economic participation. Poor implementation could create instability, uncertainty and declining productivity.",
+
+        "political_risk": "The political risk is that land reform becomes permanently symbolic. Political parties may repeatedly invoke land emotionally while redistribution remains slow, selective or captured by connected elites.",
+
+        "hard_question": "Can South Africa pursue meaningful redistribution while simultaneously protecting agricultural productivity, institutional legitimacy and social stability?",
+
+        "yoh_view": "At its deepest level, this debate is about whether political reconciliation without substantial economic restructuring can remain socially sustainable over generations."
+    }
+
 }
 
 
@@ -46,537 +106,38 @@ def home(request):
     return render(request, "core/home.html")
 
 
-def learn(request):
-    return render(request, "core/learn.html")
-
-
 def parties(request):
-    parties_list = Party.objects.all().order_by("name")
-    return render(request, "core/parties.html", {"parties": parties_list})
+    parties = Party.objects.all()
+    return render(request, "core/parties.html", {"parties": parties})
 
 
 def party_detail(request, slug):
-    party = get_object_or_404(Party, slug=slug)
-    policies = party.manifesto_policies.all().order_by("category", "policy_title")
-    return render(request, "core/party_detail.html", {"party": party, "policies": policies})
+    party = Party.objects.get(slug=slug)
+    policies = party.manifestopolicy_set.all()
 
-
-def policy_compare(request):
-    parties = Party.objects.all().order_by("name")
-    categories = ManifestoPolicy.objects.values_list("category", flat=True).distinct().order_by("category")
-
-    selected_category = request.GET.get("category", "Economy")
-    selected_party_slugs = request.GET.getlist("parties")
-
-    if not selected_party_slugs:
-        selected_party_slugs = ["da", "eff", "anc"]
-
-    selected_parties = Party.objects.filter(slug__in=selected_party_slugs).order_by("name")
-
-    comparison_rows = []
-
-    for party in selected_parties:
-        policy = ManifestoPolicy.objects.filter(party=party, category=selected_category).first()
-        comparison_rows.append({"party": party, "policy": policy})
-
-    category_commentary = {
-        "Economy": "This comparison shows whether parties see South Africa's economic crisis mainly as a growth problem, ownership problem, corruption problem, or structural inequality problem.",
-        "Employment": "This comparison shows how parties imagine jobs being created: through markets, the state, entrepreneurship, industrialisation, public employment, or local development.",
-        "Governance": "This comparison shows what each party thinks is wrong with the state, and what kind of government it wants to build.",
-        "Crime": "This comparison shows whether parties treat crime mainly as a policing crisis, social crisis, economic crisis, moral crisis, or state-capacity crisis.",
-        "Immigration": "This comparison shows how parties balance border control, documentation, African solidarity, jobs, services, and community pressure.",
-        "Transformation / Equality": "This comparison shows what each party thinks equality actually means in South Africa: opportunity, redistribution, ownership, redress, minority protection, or social justice.",
-        "Youth Development": "This comparison shows whether parties treat young people as voters, jobseekers, entrepreneurs, students, or a generation needing political power.",
-        "Social Justice": "This comparison shows whose pain each party recognises most clearly, and what it is willing to change because of that recognition.",
-    }
-
-    return render(request, "core/policy_compare.html", {
-        "parties": parties,
-        "categories": categories,
-        "selected_category": selected_category,
-        "selected_party_slugs": selected_party_slugs,
-        "comparison_rows": comparison_rows,
-        "category_commentary": category_commentary.get(selected_category, "This comparison shows how parties differ in their political priorities and manifesto arguments."),
+    return render(request, "core/party_detail.html", {
+        "party": party,
+        "policies": policies,
     })
-
-
-def compass(request):
-    result = None
-
-    if request.method == "POST":
-        axis_scores = {
-            "economic": 5,
-            "transformation": 5,
-            "governance": 5,
-            "crime": 5,
-            "immigration": 5,
-            "social": 5,
-        }
-
-        for question in COMPASS_QUESTIONS:
-            answer = int(request.POST.get(question["id"], 0))
-
-            if answer > 0:
-                axis_scores[question["axis"]] += question["left"] * answer
-            elif answer < 0:
-                axis_scores[question["axis"]] += question["right"] * abs(answer)
-
-        for key in axis_scores:
-            axis_scores[key] = max(0, min(10, axis_scores[key]))
-
-        matches = []
-
-        for abbreviation, profile in PARTY_PROFILES.items():
-            difference = 0
-
-            for axis, user_score in axis_scores.items():
-                difference += abs(user_score - profile.get(axis, 5))
-
-            match_percentage = max(0, round(100 - (difference * 3)))
-            party = Party.objects.filter(abbreviation=abbreviation).first()
-
-            matches.append({
-                "abbreviation": abbreviation,
-                "party": party,
-                "match": match_percentage,
-            })
-
-        matches = sorted(matches, key=lambda item: item["match"], reverse=True)
-
-        result = {
-            "axis_scores": axis_scores,
-            "matches": matches[:5],
-            "economic_label": "Left-leaning / redistributive" if axis_scores["economic"] >= 6 else "Market-leaning / growth-focused",
-            "transformation_label": "Transformation-focused" if axis_scores["transformation"] >= 6 else "Gradual reform-focused",
-            "governance_label": "Institution-first" if axis_scores["governance"] >= 7 else "Politics-first or mixed",
-            "crime_label": "Strong law-and-order leaning" if axis_scores["crime"] >= 7 else "Social causes and prevention leaning",
-            "immigration_label": "Strict border-control leaning" if axis_scores["immigration"] >= 7 else "Pan-African / migration-sensitive leaning",
-        }
-
-    return render(request, "core/compass.html", {"questions": COMPASS_QUESTIONS, "result": result})
-
-
-def affects_you(request):
-    selected_key = request.GET.get("persona", "student")
-    persona = PERSONA_DATA.get(selected_key, PERSONA_DATA["student"])
-    parties = Party.objects.all().order_by("name")
-    party_breakdowns = []
-
-    for party in parties:
-        relevant_policies = party.manifesto_policies.filter(category__in=persona["focus"]).order_by("category")[:4]
-        party_breakdowns.append({"party": party, "policies": relevant_policies})
-
-    return render(request, "core/affects_you.html", {
-        "personas": PERSONA_DATA,
-        "selected_key": selected_key,
-        "persona": persona,
-        "party_breakdowns": party_breakdowns,
-    })
-
-
-def commentary(request):
-    articles = CommentaryArticle.objects.all().order_by("-created_at")
-    featured_article = articles.first()
-    remaining_articles = articles[1:] if articles.count() > 1 else []
-    categories = CommentaryArticle.objects.values_list("category", flat=True).distinct().order_by("category")
-
-    return render(request, "core/commentary.html", {
-        "articles": remaining_articles,
-        "featured_article": featured_article,
-        "categories": categories,
-    })
-
-
-def article_detail(request, article_id):
-    article = get_object_or_404(CommentaryArticle, id=article_id)
-    related_articles = CommentaryArticle.objects.exclude(id=article.id).filter(category=article.category).order_by("-created_at")[:3]
-
-    return render(request, "core/article_detail.html", {
-        "article": article,
-        "related_articles": related_articles,
-    })
-
-def everyday_politics(request):
-    return render(request, "core/everyday_politics.html")
-
-
-def everyday_politics(request):
-    return render(request, "core/everyday_politics.html")
-
-def party_worldviews(request):
-    parties = Party.objects.all().order_by("name")
-    return render(request, "core/party_worldviews.html", {"parties": parties})
-
-
-def political_archetypes(request):
-    return render(request, "core/political_archetypes.html")
-
-
-def politics_identity(request):
-    return render(request, "core/politics_identity.html")
-
-DEBATE_TOPICS = {
-    "land": {
-        "title": "Land Reform",
-        "description": "A debate about ownership, historical dispossession, property rights, food security, dignity, and economic justice.",
-    },
-    "jobs": {
-        "title": "Jobs and Unemployment",
-        "description": "A debate about whether jobs come from markets, the state, entrepreneurs, public employment, or industrial policy.",
-    },
-    "crime": {
-        "title": "Crime and Safety",
-        "description": "A debate about policing, poverty, punishment, courts, social breakdown, and whether the state can protect communities.",
-    },
-    "immigration": {
-        "title": "Immigration and Borders",
-        "description": "A debate about border control, documentation, African solidarity, jobs, public services, and xenophobia.",
-    },
-    "corruption": {
-        "title": "Corruption and Governance",
-        "description": "A debate about cadre deployment, clean government, state capacity, accountability, and public trust.",
-    },
-}
-
-
-DEBATE_ARGUMENTS = {
-    "DA": {
-        "land": {
-            "argument": "The DA would argue that land reform must happen within the rule of law, with secure property rights, proper support for beneficiaries, and protection of food security.",
-            "counter": "Critics would say this approach is too slow and too cautious for a country built on land dispossession.",
-            "public": "This appeals to voters who fear instability, but frustrates voters who want faster historical redress.",
-        },
-        "jobs": {
-            "argument": "The DA would argue that jobs come from growth, investment, reliable infrastructure, lower corruption, safer communities, and a capable state.",
-            "counter": "Critics would say market-led growth may not reach poor communities quickly enough.",
-            "public": "This appeals to business-minded and governance-focused voters, but may feel distant to unemployed youth.",
-        },
-        "crime": {
-            "argument": "The DA would argue for professional policing, stronger prosecution, better crime intelligence, and less political interference.",
-            "counter": "Critics would say policing reform alone cannot solve crime without tackling poverty and inequality.",
-            "public": "This appeals to people who want order, safety, and competent institutions.",
-        },
-        "immigration": {
-            "argument": "The DA would frame immigration as a documentation and governance issue, not a culture-war issue.",
-            "counter": "Critics may say this sounds too soft during high unemployment.",
-            "public": "This appeals to moderate voters who want order without extreme rhetoric.",
-        },
-        "corruption": {
-            "argument": "The DA would argue that cadre deployment, corruption, and weak institutions are the core causes of state failure.",
-            "counter": "Critics may say clean governance does not automatically solve land, race, and ownership inequality.",
-            "public": "This is one of the DA's strongest debate areas.",
-        },
-    },
-    "EFF": {
-        "land": {
-            "argument": "The EFF would argue that land must be expropriated without compensation because political freedom is incomplete without land and ownership.",
-            "counter": "Critics would warn about property rights, food security, investor confidence, and state capacity.",
-            "public": "This strongly resonates with voters who feel dispossession remains unresolved.",
-        },
-        "jobs": {
-            "argument": "The EFF would argue that the state must drive industrialisation, create jobs, protect workers, and restructure the economy.",
-            "counter": "Critics would say this depends on a state that already struggles with corruption and implementation.",
-            "public": "This appeals strongly to unemployed youth and working-class voters.",
-        },
-        "crime": {
-            "argument": "The EFF would link crime to poverty, unemployment, drugs, inequality, and social collapse.",
-            "counter": "Critics may say this underplays the need for immediate law enforcement.",
-            "public": "This appeals to voters who see crime as a symptom of economic exclusion.",
-        },
-        "immigration": {
-            "argument": "The EFF would warn against xenophobia and argue that migrants are not the cause of unemployment or poverty.",
-            "counter": "Critics may say communities still need stronger border control and documentation.",
-            "public": "This appeals to pan-African voters but may be harder in communities under economic pressure.",
-        },
-        "corruption": {
-            "argument": "The EFF would argue corruption is tied to capitalist capture, tender politics, and elite control of the state.",
-            "counter": "Critics may question whether the EFF's own state-heavy vision could increase corruption risks.",
-            "public": "This works when voters see corruption as elite theft, but raises questions about implementation.",
-        },
-    },
-    "ANC": {
-        "land": {
-            "argument": "The ANC would argue for land reform as part of transformation and redress, but usually through gradual state-led processes.",
-            "counter": "Critics would say the ANC has had decades to deliver land reform and moved too slowly.",
-            "public": "This appeals to voters who support redress but fear instability.",
-        },
-        "jobs": {
-            "argument": "The ANC would argue for jobs through infrastructure, public investment, industrial policy, transformation, and social support.",
-            "counter": "Critics would say ANC-led implementation has been weakened by corruption and state failure.",
-            "public": "This appeals to voters who still believe in the developmental state.",
-        },
-        "crime": {
-            "argument": "The ANC would link crime to poverty, inequality, drugs, policing, and social breakdown.",
-            "counter": "Critics would say the ANC has governed long enough to be held responsible for policing failures.",
-            "public": "This is a difficult debate area for the ANC because trust in state capacity is low.",
-        },
-        "immigration": {
-            "argument": "The ANC would try to balance African solidarity with lawful migration and border management.",
-            "counter": "Critics would say the ANC sounds unclear because it is caught between ideology and public frustration.",
-            "public": "This creates mixed reactions, especially in urban communities under pressure.",
-        },
-        "corruption": {
-            "argument": "The ANC would argue that it is renewing itself and rebuilding state capacity.",
-            "counter": "Critics would say renewal has been promised too many times without enough consequences.",
-            "public": "This is one of the ANC's most vulnerable debate areas.",
-        },
-    },
-    "ActionSA": {
-        "land": {
-            "argument": "ActionSA would likely support transformation and opportunity, but avoid radical land expropriation politics.",
-            "counter": "Critics may say this does not go far enough on historical dispossession.",
-            "public": "This appeals to voters who want redress but also stability.",
-        },
-        "jobs": {
-            "argument": "ActionSA would argue that jobs come from entrepreneurship, small business, investment, safety, and practical government.",
-            "counter": "Critics may say entrepreneurship cannot absorb unemployment at the scale South Africa needs.",
-            "public": "This appeals to township entrepreneurs and urban voters frustrated by bureaucracy.",
-        },
-        "crime": {
-            "argument": "ActionSA would argue for strong policing, specialised units, serious prosecution, and visible enforcement.",
-            "counter": "Critics may say tough crime language must still address poverty, addiction, and court dysfunction.",
-            "public": "This is one of ActionSA's strongest emotional issues.",
-        },
-        "immigration": {
-            "argument": "ActionSA would argue strongly for border control, documentation, and action against illegal immigration.",
-            "counter": "Critics would warn this can encourage scapegoating and xenophobia.",
-            "public": "This strongly appeals to voters angry about jobs, housing, and public-service pressure.",
-        },
-        "corruption": {
-            "argument": "ActionSA would argue that corrupt officials must face real consequences and government must act faster.",
-            "counter": "Critics may say anger at corruption is not the same as a full national governance programme.",
-            "public": "This appeals to voters tired of excuses and slow reform.",
-        },
-    },
-    "RISE": {
-        "land": {
-            "argument": "RISE would likely frame land as a justice and dignity issue requiring responsible reform and social trust.",
-            "counter": "Critics may say this sounds too cautious for the urgency of land inequality.",
-            "public": "This appeals to reform-minded voters who want justice without chaos.",
-        },
-        "jobs": {
-            "argument": "RISE would argue for inclusive growth, ethical leadership, public service repair, and real pathways for young people.",
-            "counter": "Critics may say values-driven politics still needs hard economic machinery.",
-            "public": "This appeals to politically tired voters seeking a serious alternative.",
-        },
-        "crime": {
-            "argument": "RISE would treat safety as a democratic dignity issue: people cannot be free if they live under fear.",
-            "counter": "Critics may say this needs sharper enforcement detail.",
-            "public": "This appeals to voters who want seriousness without populist shouting.",
-        },
-        "immigration": {
-            "argument": "RISE would likely stress lawful systems, fairness, documentation, social cohesion, and avoiding scapegoating.",
-            "counter": "Critics may say this underestimates community anger.",
-            "public": "This appeals to constitutional and civic-minded voters.",
-        },
-        "corruption": {
-            "argument": "RISE would argue that South Africa needs ethical leadership and democratic renewal.",
-            "counter": "Critics may say ethics alone cannot build mass power or state capacity.",
-            "public": "This appeals to voters who are politically exhausted but still hopeful.",
-        },
-    },
-    "PA": {
-        "land": {
-            "argument": "The PA would likely frame land and housing through community recognition and practical delivery.",
-            "counter": "Critics may say the party is stronger on emotion than detailed land policy.",
-            "public": "This appeals to communities that feel ignored in transformation debates.",
-        },
-        "jobs": {
-            "argument": "The PA would focus on local jobs, community upliftment, and visible action.",
-            "counter": "Critics may ask whether populist energy can become serious economic planning.",
-            "public": "This appeals to voters who want direct, blunt politics.",
-        },
-        "crime": {
-            "argument": "The PA would argue for tough action against crime, drugs, gangs, and lawlessness.",
-            "counter": "Critics may say toughness alone cannot solve addiction, poverty, and weak policing.",
-            "public": "This is one of the PA's strongest emotional issues.",
-        },
-        "immigration": {
-            "argument": "The PA would strongly support action against illegal immigration and stricter border control.",
-            "counter": "Critics would warn about scapegoating migrants.",
-            "public": "This resonates strongly with voters who feel communities are under pressure.",
-        },
-        "corruption": {
-            "argument": "The PA would present itself as direct, fearless, and willing to confront corrupt politics.",
-            "counter": "Critics may say personality-driven politics needs institutional depth.",
-            "public": "This appeals to voters who want blunt leadership.",
-        },
-    },
-}
-
-
-def debate_simulator(request):
-    parties = Party.objects.all().order_by("name")
-    selected_topic = request.GET.get("topic", "jobs")
-    selected_slugs = request.GET.getlist("parties")
-
-    if not selected_slugs:
-        selected_slugs = ["da", "eff", "anc"]
-
-    selected_parties = Party.objects.filter(slug__in=selected_slugs).order_by("name")
-
-    debate_rows = []
-
-    for party in selected_parties:
-        argument_data = DEBATE_ARGUMENTS.get(party.abbreviation, {}).get(selected_topic)
-
-        if not argument_data:
-            argument_data = {
-                "argument": f"{party.name} would approach this debate through its broader political identity: {party.political_identity}",
-                "counter": "Critics would ask whether the party has enough detail, funding, capacity, and political will to implement its position.",
-                "public": "Public reaction would depend on which communities feel recognised or threatened by the party's argument.",
-            }
-
-        debate_rows.append({
-            "party": party,
-            "argument": argument_data["argument"],
-            "counter": argument_data["counter"],
-            "public": argument_data["public"],
-        })
-
-    topic = DEBATE_TOPICS.get(selected_topic, DEBATE_TOPICS["jobs"])
-
-    return render(request, "core/debate_simulator.html", {
-        "parties": parties,
-        "topics": DEBATE_TOPICS,
-        "selected_topic": selected_topic,
-        "selected_slugs": selected_slugs,
-        "selected_parties": selected_parties,
-        "debate_rows": debate_rows,
-        "topic": topic,
-    })
-
-POLICY_ANALYZER_DATA = {
-    "nationalisation": {
-        "title": "Nationalisation",
-        "summary": "The state takes ownership or control of strategic sectors such as mines, banks, energy, or major industries.",
-        "cost": "Very high. The state may need compensation, new management systems, technical capacity, legal processes, and long-term funding.",
-        "difficulty": "Very difficult. It requires legal clarity, administrative skill, investor management, and strong institutions.",
-        "corruption_risk": "High if procurement, appointments, and management are politically captured.",
-        "winners": "Workers, communities near resources, the state, and citizens if profits are redirected into public services.",
-        "losers": "Current owners, investors, private shareholders, and possibly taxpayers if state management fails.",
-        "state_capacity": "This policy only works if the state can manage complex industries honestly and professionally.",
-        "yoh_view": "Nationalisation is morally attractive when people feel national wealth benefits only a few. But it becomes dangerous if the state is corrupt or technically weak."
-    },
-    "free_education": {
-        "title": "Free Higher Education",
-        "summary": "The state funds university and TVET education so students are not blocked by family income.",
-        "cost": "High. Tuition, accommodation, food, transport, books, and administration all require sustainable funding.",
-        "difficulty": "Difficult. It needs reliable funding, university capacity, NSFAS reform, and proper student support.",
-        "corruption_risk": "Medium to high if funding systems are poorly managed or politically abused.",
-        "winners": "Poor and working-class students, families, graduates, and the broader economy if education leads to employment.",
-        "losers": "Taxpayers may carry more cost, and universities may struggle if funding is delayed or insufficient.",
-        "state_capacity": "Requires strong administration, accurate student data, and efficient payment systems.",
-        "yoh_view": "Free education is not only about fees. If accommodation, food, transport, and mental health are ignored, access remains incomplete."
-    },
-    "mass_deportation": {
-        "title": "Mass Deportation",
-        "summary": "A hard-line immigration policy focused on removing undocumented migrants at large scale.",
-        "cost": "High. It requires police capacity, Home Affairs systems, courts, detention facilities, transport, and international cooperation.",
-        "difficulty": "Very difficult. Documentation, legal rights, appeals, corruption, and enforcement capacity complicate implementation.",
-        "corruption_risk": "High if enforcement becomes abusive, selective, or bribery-driven.",
-        "winners": "Voters who want strict border control may feel heard. Some communities may feel the state is acting.",
-        "losers": "Migrants, families, employers relying on migrant labour, and communities if enforcement becomes violent or xenophobic.",
-        "state_capacity": "Requires a Home Affairs system far stronger than the current one.",
-        "yoh_view": "Border control matters, but mass deportation politics can easily turn state failure into migrant blame."
-    },
-    "basic_income": {
-        "title": "Basic Income Grant",
-        "summary": "A regular income support payment for unemployed or poor adults.",
-        "cost": "Very high depending on amount and eligibility. It requires permanent funding.",
-        "difficulty": "Moderate to difficult. South Africa has grant infrastructure, but funding and fraud controls matter.",
-        "corruption_risk": "Medium. Digital systems can reduce risk, but weak administration creates leakage.",
-        "winners": "Unemployed people, poor households, informal traders, township economies, and jobseekers.",
-        "losers": "Taxpayers may face higher burden if not funded through growth or reprioritisation.",
-        "state_capacity": "Requires reliable beneficiary data, payment systems, and fiscal discipline.",
-        "yoh_view": "A basic income grant recognises that unemployment is expensive. But it cannot become a substitute for real job creation."
-    },
-    "nhi": {
-        "title": "National Health Insurance",
-        "summary": "A system aimed at giving people access to healthcare based on need rather than ability to pay.",
-        "cost": "Very high. Healthcare funding, staff, hospitals, technology, and administration all require major investment.",
-        "difficulty": "Very difficult. It requires fixing public healthcare quality while integrating funding systems.",
-        "corruption_risk": "High if procurement, contracts, and administration are weak.",
-        "winners": "Poor households, patients without medical aid, public health users, and people with high healthcare costs.",
-        "losers": "Private medical schemes, taxpayers, and patients if implementation weakens both public and private systems.",
-        "state_capacity": "Requires extremely strong governance, procurement, hospital management, staffing, and data systems.",
-        "yoh_view": "NHI speaks to a real moral problem: healthcare inequality. But healthcare justice cannot be built on broken administration."
-    },
-    "land_expropriation": {
-        "title": "Land Expropriation Without Compensation",
-        "summary": "The state takes land without paying compensation in certain cases to address historical dispossession.",
-        "cost": "Financial cost may vary, but legal, administrative, agricultural, and economic costs can be high.",
-        "difficulty": "Very difficult. It requires land audits, beneficiary support, courts, farming support, and clear rules.",
-        "corruption_risk": "High if politically connected people benefit instead of landless communities.",
-        "winners": "Landless communities, rural households, emerging farmers, and people needing urban land for housing.",
-        "losers": "Current owners, investors, banks, and food producers if implementation is chaotic.",
-        "state_capacity": "Requires strong land administration, post-transfer support, and corruption control.",
-        "yoh_view": "Land reform is morally unavoidable. The danger is not land reform itself. The danger is land reform captured by elites or implemented without support."
-    },
-}
-
-
-GLOSSARY_TERMS = [
-    {
-        "term": "GNU",
-        "full": "Government of National Unity",
-        "meaning": "A governing arrangement where multiple parties cooperate in government, usually because no single party can govern comfortably alone.",
-        "why": "It matters because parties with different ideologies must compromise on cabinet positions, budgets, policy, and accountability."
-    },
-    {
-        "term": "BEE",
-        "full": "Black Economic Empowerment",
-        "meaning": "A transformation policy aimed at increasing black participation in ownership, management, procurement, employment, and enterprise development.",
-        "why": "It matters because South Africa is still shaped by apartheid-era economic exclusion."
-    },
-    {
-        "term": "Cadre Deployment",
-        "full": "Political deployment of loyal party members",
-        "meaning": "When a party places loyal members or allies into state positions to advance its programme.",
-        "why": "It matters because loyalty can weaken competence if appointments are not based on skill and ethics."
-    },
-    {
-        "term": "Populism",
-        "full": "People-versus-elite politics",
-        "meaning": "A political style that claims to speak for ordinary people against corrupt elites or outsiders.",
-        "why": "It matters because populism can expose real anger, but can also oversimplify complex problems."
-    },
-    {
-        "term": "Socialism",
-        "full": "State-led or collective economic justice politics",
-        "meaning": "A political and economic ideology that supports greater public control, redistribution, worker protection, and reduced inequality.",
-        "why": "It matters because many South African debates about land, mines, banks, education, and healthcare are shaped by socialist ideas."
-    },
-    {
-        "term": "Neoliberalism",
-        "full": "Market-centred economic policy",
-        "meaning": "An approach that favours markets, private investment, competition, reduced state intervention, and fiscal discipline.",
-        "why": "It matters because critics say it protects inequality, while supporters say it supports growth and stability."
-    },
-    {
-        "term": "Austerity",
-        "full": "Government spending restraint",
-        "meaning": "A policy approach where government reduces or limits spending to manage debt, deficits, or investor confidence.",
-        "why": "It matters because spending cuts can affect healthcare, education, grants, jobs, and public services."
-    },
-    {
-        "term": "State Capture",
-        "full": "Private capture of public power",
-        "meaning": "When private interests influence or control state decisions, appointments, contracts, and institutions for their own benefit.",
-        "why": "It matters because it weakens democracy, steals public money, damages institutions, and destroys trust."
-    },
-]
 
 
 def policy_feasibility(request):
-    selected_key = request.GET.get("policy", "basic_income")
-    selected_policy = POLICY_ANALYZER_DATA.get(selected_key, POLICY_ANALYZER_DATA["basic_income"])
+
+    selected_key = request.GET.get("policy", "nationalisation")
+
+    selected_policy = POLICY_ANALYZER_DATA.get(
+        selected_key,
+        POLICY_ANALYZER_DATA["nationalisation"]
+    )
 
     return render(request, "core/policy_feasibility.html", {
         "policies": POLICY_ANALYZER_DATA,
-        "selected_key": selected_key,
         "selected_policy": selected_policy,
+        "selected_key": selected_key,
     })
+
+def learn(request):
+    return render(request, "core/learn.html")
 
 
 def campus_politics(request):
@@ -586,15 +147,18 @@ def campus_politics(request):
 def political_glossary(request):
     query = request.GET.get("q", "").lower().strip()
 
-    terms = GLOSSARY_TERMS
+    try:
+        terms = GLOSSARY_TERMS
+    except NameError:
+        terms = []
 
     if query:
         terms = [
-            item for item in GLOSSARY_TERMS
-            if query in item["term"].lower()
-            or query in item["full"].lower()
-            or query in item["meaning"].lower()
-            or query in item["why"].lower()
+            item for item in terms
+            if query in item.get("term", "").lower()
+            or query in item.get("full", "").lower()
+            or query in item.get("meaning", "").lower()
+            or query in item.get("why", "").lower()
         ]
 
     return render(request, "core/political_glossary.html", {
@@ -602,234 +166,88 @@ def political_glossary(request):
         "query": query,
     })
 
-PERSONALITY_TYPES = {
-    "frustrated_graduate": {
-        "title": "The Frustrated Graduate",
-        "description": "You are politically shaped by unemployment, blocked opportunity, education pressure, and the fear that qualifications no longer guarantee dignity.",
-        "likely_parties": "EFF, RISE Mzansi, ActionSA, ANC reform wing",
-    },
-    "exhausted_taxpayer": {
-        "title": "The Exhausted Taxpayer",
-        "description": "You are tired of paying into a state that often fails to deliver safety, infrastructure, electricity, clean governance, and reliable public services.",
-        "likely_parties": "DA, ActionSA, FF Plus, RISE Mzansi",
-    },
-    "liberation_loyalist": {
-        "title": "The Liberation Loyalist",
-        "description": "You still see liberation history, black political power, and the democratic breakthrough as central to understanding South African politics.",
-        "likely_parties": "ANC, MK, sometimes EFF",
-    },
-    "anti_immigration_voter": {
-        "title": "The Border-Control Voter",
-        "description": "You believe South Africa must take immigration, documentation, border control, and competition for jobs and services more seriously.",
-        "likely_parties": "ActionSA, PA, FF Plus, DA",
-    },
-    "anti_corruption_liberal": {
-        "title": "The Anti-Corruption Liberal",
-        "description": "You believe corruption, cadre deployment, weak institutions, and poor administration are the main reasons South Africa is failing.",
-        "likely_parties": "DA, RISE Mzansi, ActionSA, GOOD",
-    },
-    "township_pragmatist": {
-        "title": "The Township Pragmatist",
-        "description": "You are less interested in speeches and more interested in safety, jobs, electricity, small business support, clean streets, and government that works.",
-        "likely_parties": "ActionSA, PA, DA, ANC, RISE Mzansi",
-    },
-    "politically_homeless": {
-        "title": "The Politically Homeless Voter",
-        "description": "You agree with different parties on different issues, but no party fully represents your mix of justice, competence, caution, frustration, and hope.",
-        "likely_parties": "RISE Mzansi, GOOD, independents, reluctant DA/ANC voting",
-    },
-    "radical_redistribution_voter": {
-        "title": "The Radical Redistribution Voter",
-        "description": "You believe South Africa cannot be fixed without major redistribution of land, wealth, ownership, education access, and economic power.",
-        "likely_parties": "EFF, ANC left wing, MK",
-    },
-    "law_and_order_voter": {
-        "title": "The Law-and-Order Voter",
-        "description": "You experience politics through crime, fear, unsafe streets, weak policing, drugs, gangs, and the feeling that the state has lost control.",
-        "likely_parties": "ActionSA, PA, DA, FF Plus, IFP",
-    },
-    "youth_rebuilder": {
-        "title": "The Youth Rebuilder",
-        "description": "You want a politics focused on young people, practical reform, ethical leadership, jobs, education, dignity, and rebuilding public trust.",
-        "likely_parties": "RISE Mzansi, GOOD, ActionSA, DA, ANC reform wing",
-    },
-}
 
-
-PERSONALITY_QUESTIONS = [
-    {
-        "id": "p1",
-        "text": "My biggest political frustration is that young educated people still cannot find decent work.",
-        "type": "frustrated_graduate",
-    },
-    {
-        "id": "p2",
-        "text": "I am tired of paying taxes while government services keep collapsing.",
-        "type": "exhausted_taxpayer",
-    },
-    {
-        "id": "p3",
-        "text": "Liberation history still matters when deciding which parties deserve trust.",
-        "type": "liberation_loyalist",
-    },
-    {
-        "id": "p4",
-        "text": "South Africa needs much stricter immigration enforcement.",
-        "type": "anti_immigration_voter",
-    },
-    {
-        "id": "p5",
-        "text": "Corruption and cadre deployment are the biggest reasons the country is failing.",
-        "type": "anti_corruption_liberal",
-    },
-    {
-        "id": "p6",
-        "text": "I care less about ideology and more about whether government can fix roads, crime, electricity, and jobs.",
-        "type": "township_pragmatist",
-    },
-    {
-        "id": "p7",
-        "text": "No political party fully represents how I think.",
-        "type": "politically_homeless",
-    },
-    {
-        "id": "p8",
-        "text": "South Africa needs major redistribution of land, wealth, and ownership.",
-        "type": "radical_redistribution_voter",
-    },
-    {
-        "id": "p9",
-        "text": "Crime is my biggest political concern.",
-        "type": "law_and_order_voter",
-    },
-    {
-        "id": "p10",
-        "text": "I want a new politics focused on young people, competence, dignity, and rebuilding trust.",
-        "type": "youth_rebuilder",
-    },
-]
+def policy_compare(request):
+    parties = Party.objects.all().order_by("name")
+    return render(request, "core/policy_compare.html", {
+        "parties": parties,
+    })
 
 
 def compass(request):
-    result = None
-
-    all_questions = COMPASS_QUESTIONS + PERSONALITY_QUESTIONS
-
-    if request.method == "POST":
-        axis_scores = {
-            "economic": 5,
-            "transformation": 5,
-            "governance": 5,
-            "crime": 5,
-            "immigration": 5,
-            "social": 5,
-        }
-
-        personality_scores = {
-            key: 0 for key in PERSONALITY_TYPES.keys()
-        }
-
-        for question in COMPASS_QUESTIONS:
-            answer = int(request.POST.get(question["id"], 0))
-
-            if answer > 0:
-                axis_scores[question["axis"]] += question["left"] * answer
-            elif answer < 0:
-                axis_scores[question["axis"]] += question["right"] * abs(answer)
-
-        for question in PERSONALITY_QUESTIONS:
-            answer = int(request.POST.get(question["id"], 0))
-
-            if answer > 0:
-                personality_scores[question["type"]] += answer * 2
-            elif answer < 0:
-                personality_scores[question["type"]] -= abs(answer)
-
-        for key in axis_scores:
-            axis_scores[key] = max(0, min(10, axis_scores[key]))
-
-        matches = []
-
-        for abbreviation, profile in PARTY_PROFILES.items():
-            difference = 0
-
-            for axis, user_score in axis_scores.items():
-                difference += abs(user_score - profile.get(axis, 5))
-
-            match_percentage = max(0, round(100 - (difference * 3)))
-            party = Party.objects.filter(abbreviation=abbreviation).first()
-
-            matches.append({
-                "abbreviation": abbreviation,
-                "party": party,
-                "match": match_percentage,
-            })
-
-        matches = sorted(matches, key=lambda item: item["match"], reverse=True)
-
-        top_personality_key = max(personality_scores, key=personality_scores.get)
-        top_personality = PERSONALITY_TYPES[top_personality_key]
-
-        secondary_personalities = sorted(
-            personality_scores.items(),
-            key=lambda item: item[1],
-            reverse=True
-        )[1:4]
-
-        secondary_personalities = [
-            {
-                "key": key,
-                "score": score,
-                "title": PERSONALITY_TYPES[key]["title"],
-                "description": PERSONALITY_TYPES[key]["description"],
-            }
-            for key, score in secondary_personalities
-        ]
-
-        result = {
-            "axis_scores": axis_scores,
-            "matches": matches[:5],
-            "economic_label": "Left-leaning / redistributive" if axis_scores["economic"] >= 6 else "Market-leaning / growth-focused",
-            "transformation_label": "Transformation-focused" if axis_scores["transformation"] >= 6 else "Gradual reform-focused",
-            "governance_label": "Institution-first" if axis_scores["governance"] >= 7 else "Politics-first or mixed",
-            "crime_label": "Strong law-and-order leaning" if axis_scores["crime"] >= 7 else "Social causes and prevention leaning",
-            "immigration_label": "Strict border-control leaning" if axis_scores["immigration"] >= 7 else "Pan-African / migration-sensitive leaning",
-            "personality": top_personality,
-            "secondary_personalities": secondary_personalities,
-        }
-
     return render(request, "core/compass.html", {
-        "questions": all_questions,
-        "result": result,
+        "questions": [],
+        "result": None,
     })
+
+
+def affects_you(request):
+    return render(request, "core/affects_you.html")
+
+
+def everyday_politics(request):
+    return render(request, "core/everyday_politics.html")
+
+
+def party_worldviews(request):
+    parties = Party.objects.all().order_by("name")
+    return render(request, "core/party_worldviews.html", {
+        "parties": parties,
+    })
+
+
+def political_archetypes(request):
+    return render(request, "core/political_archetypes.html")
+
+
+def politics_identity(request):
+    return render(request, "core/politics_identity.html")
+
+
+def debate_simulator(request):
+    parties = Party.objects.all().order_by("name")
+    return render(request, "core/debate_simulator.html", {
+        "parties": parties,
+        "topics": {},
+        "selected_topic": "",
+        "selected_slugs": [],
+        "debate_rows": [],
+        "topic": {},
+    })
+
+
+def commentary(request):
+    from .models import CommentaryArticle
+
+    articles = CommentaryArticle.objects.all().order_by("-id")
+
+    return render(request, "core/commentary.html", {
+        "articles": articles,
+        "commentary_articles": articles,
+        "featured_article": articles.first(),
+    })
+
+
+def article_detail(request, article_id):
+    from .models import CommentaryArticle
+
+    article = CommentaryArticle.objects.get(id=article_id)
+    related_articles = CommentaryArticle.objects.exclude(id=article_id)[:3]
+
+    return render(request, "core/article_detail.html", {
+        "article": article,
+        "related_articles": related_articles,
+    })
+
 
 def site_search(request):
     query = request.GET.get("q", "").strip()
-
-    party_results = []
-    policy_results = []
-    commentary_results = []
-    glossary_results = []
-
-    if query:
-        party_results = Party.objects.filter(name__icontains=query) | Party.objects.filter(abbreviation__icontains=query) | Party.objects.filter(ideology__icontains=query)
-        policy_results = ManifestoPolicy.objects.filter(policy_title__icontains=query) | ManifestoPolicy.objects.filter(category__icontains=query) | ManifestoPolicy.objects.filter(manifesto_position__icontains=query)
-        commentary_results = CommentaryArticle.objects.filter(title__icontains=query) | CommentaryArticle.objects.filter(summary__icontains=query) | CommentaryArticle.objects.filter(category__icontains=query)
-
-        glossary_results = [
-            item for item in GLOSSARY_TERMS
-            if query.lower() in item["term"].lower()
-            or query.lower() in item["full"].lower()
-            or query.lower() in item["meaning"].lower()
-            or query.lower() in item["why"].lower()
-        ]
-
     return render(request, "core/search.html", {
         "query": query,
-        "party_results": party_results,
-        "policy_results": policy_results,
-        "commentary_results": commentary_results,
-        "glossary_results": glossary_results,
+        "party_results": [],
+        "policy_results": [],
+        "commentary_results": [],
+        "glossary_results": [],
     })
 
 
