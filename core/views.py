@@ -253,3 +253,170 @@ def site_search(request):
 
 def about(request):
     return render(request, "core/about.html")
+
+COMPASS_QUESTIONS = [
+    {"id": "q1", "text": "Government should play a bigger role in reducing inequality.", "axis": "economic", "left": 1, "right": -1},
+    {"id": "q2", "text": "Private businesses are usually better than government at creating jobs.", "axis": "economic", "left": -1, "right": 1},
+    {"id": "q3", "text": "Land reform is necessary to correct historical injustice.", "axis": "transformation", "left": 1, "right": -1},
+    {"id": "q4", "text": "South Africa needs stronger anti-corruption institutions more than new political promises.", "axis": "governance", "left": 1, "right": -1},
+    {"id": "q5", "text": "Crime should be handled with much tougher policing and sentencing.", "axis": "crime", "left": 1, "right": -1},
+    {"id": "q6", "text": "Poverty and unemployment are major causes of crime.", "axis": "crime", "left": -1, "right": 1},
+    {"id": "q7", "text": "South Africa should enforce immigration laws much more strictly.", "axis": "immigration", "left": 1, "right": -1},
+    {"id": "q8", "text": "South Africa should remain open and compassionate toward migrants from the continent.", "axis": "immigration", "left": -1, "right": 1},
+    {"id": "q9", "text": "Free education should be a major national priority.", "axis": "economic", "left": 1, "right": -1},
+    {"id": "q10", "text": "Government failure is mainly caused by corruption and weak institutions.", "axis": "governance", "left": 1, "right": -1},
+]
+
+PERSONALITY_QUESTIONS = [
+    {"id": "p1", "text": "I feel young educated people are being failed by the economy.", "type": "frustrated_graduate"},
+    {"id": "p2", "text": "I am tired of paying into a state that does not deliver.", "type": "exhausted_taxpayer"},
+    {"id": "p3", "text": "Liberation history still matters when judging parties.", "type": "liberation_loyalist"},
+    {"id": "p4", "text": "Immigration pressure is one of South Africa's biggest problems.", "type": "border_control_voter"},
+    {"id": "p5", "text": "Corruption is the main reason South Africa is failing.", "type": "anti_corruption_voter"},
+    {"id": "p6", "text": "I care more about practical delivery than ideology.", "type": "township_pragmatist"},
+    {"id": "p7", "text": "No political party fully represents me.", "type": "politically_homeless"},
+]
+
+PERSONALITY_TYPES = {
+    "frustrated_graduate": "The Frustrated Graduate",
+    "exhausted_taxpayer": "The Exhausted Taxpayer",
+    "liberation_loyalist": "The Liberation Loyalist",
+    "border_control_voter": "The Border-Control Voter",
+    "anti_corruption_voter": "The Anti-Corruption Voter",
+    "township_pragmatist": "The Township Pragmatist",
+    "politically_homeless": "The Politically Homeless Voter",
+}
+
+PARTY_PROFILES = {
+    "ANC": {"economic": 7, "transformation": 8, "governance": 4, "crime": 5, "immigration": 5},
+    "DA": {"economic": 3, "transformation": 3, "governance": 9, "crime": 7, "immigration": 6},
+    "EFF": {"economic": 9, "transformation": 10, "governance": 5, "crime": 6, "immigration": 4},
+    "ActionSA": {"economic": 4, "transformation": 5, "governance": 8, "crime": 8, "immigration": 9},
+    "IFP": {"economic": 5, "transformation": 6, "governance": 7, "crime": 8, "immigration": 6},
+    "MK": {"economic": 8, "transformation": 9, "governance": 4, "crime": 7, "immigration": 6},
+    "GOOD": {"economic": 6, "transformation": 7, "governance": 7, "crime": 5, "immigration": 5},
+    "RISE": {"economic": 5, "transformation": 6, "governance": 8, "crime": 6, "immigration": 5},
+}
+
+def compass(request):
+    result = None
+    questions = COMPASS_QUESTIONS + PERSONALITY_QUESTIONS
+
+    if request.method == "POST":
+        axis_scores = {
+            "economic": 5,
+            "transformation": 5,
+            "governance": 5,
+            "crime": 5,
+            "immigration": 5,
+        }
+
+        personality_scores = {key: 0 for key in PERSONALITY_TYPES.keys()}
+
+        for question in COMPASS_QUESTIONS:
+            answer = int(request.POST.get(question["id"], 0))
+            axis_scores[question["axis"]] += answer
+
+        for question in PERSONALITY_QUESTIONS:
+            answer = int(request.POST.get(question["id"], 0))
+            if answer > 0:
+                personality_scores[question["type"]] += answer
+
+        for key in axis_scores:
+            axis_scores[key] = max(0, min(10, axis_scores[key]))
+
+        matches = []
+
+        for abbreviation, profile in PARTY_PROFILES.items():
+            difference = 0
+
+            for axis, score in axis_scores.items():
+                difference += abs(score - profile.get(axis, 5))
+
+            match = max(0, round(100 - difference * 4))
+            party = Party.objects.filter(abbreviation=abbreviation).first()
+
+            matches.append({
+                "abbreviation": abbreviation,
+                "party": party,
+                "match": match,
+            })
+
+        matches = sorted(matches, key=lambda x: x["match"], reverse=True)
+
+        top_personality_key = max(personality_scores, key=personality_scores.get)
+
+        result = {
+            "axis_scores": axis_scores,
+            "matches": matches[:5],
+            "personality": {
+                "title": PERSONALITY_TYPES[top_personality_key],
+                "description": "Your political instincts are shaped by the issues, fears, frustrations and hopes reflected in this voter type.",
+                "likely_parties": ", ".join([m["abbreviation"] for m in matches[:3]]),
+            },
+            "economic_label": "Redistribution-focused" if axis_scores["economic"] >= 6 else "Market/growth-focused",
+            "transformation_label": "Transformation-focused" if axis_scores["transformation"] >= 6 else "Gradual reform-focused",
+            "governance_label": "Institution-first" if axis_scores["governance"] >= 6 else "Politics-first or mixed",
+            "crime_label": "Law-and-order leaning" if axis_scores["crime"] >= 6 else "Social prevention leaning",
+            "immigration_label": "Strict border-control leaning" if axis_scores["immigration"] >= 6 else "Migration-sensitive leaning",
+            "secondary_personalities": [],
+        }
+
+    return render(request, "core/compass.html", {
+        "questions": questions,
+        "result": result,
+    })
+
+def policy_compare(request):
+    parties = Party.objects.all().order_by("name")
+
+    selected_category = request.GET.get("category", "overview")
+    selected_slugs = request.GET.getlist("parties")
+
+    if not selected_slugs:
+        selected_parties = parties[:3]
+        selected_slugs = [party.slug for party in selected_parties]
+    else:
+        selected_parties = Party.objects.filter(slug__in=selected_slugs).order_by("name")
+
+    category_copy = {
+        "overview": {
+            "title": "Party overview",
+            "intro": "This compares the broad political identity, ideological posture and deeper political argument each party is making."
+        },
+        "economy": {
+            "title": "Economic comparison",
+            "intro": "This compares how parties think about jobs, markets, redistribution, public ownership, entrepreneurship and the role of the state."
+        },
+        "governance": {
+            "title": "Governance comparison",
+            "intro": "This compares how parties understand corruption, institutional reform, public administration, state capacity and delivery."
+        },
+        "transformation": {
+            "title": "Transformation comparison",
+            "intro": "This compares how parties approach equality, historical redress, race, class, land, empowerment and social justice."
+        },
+        "crime": {
+            "title": "Crime and safety comparison",
+            "intro": "This compares how parties think about policing, courts, violence, prevention, punishment and public safety."
+        },
+        "immigration": {
+            "title": "Immigration comparison",
+            "intro": "This compares how parties approach borders, migration, documentation, African solidarity, jobs and social pressure."
+        },
+        "youth": {
+            "title": "Youth politics comparison",
+            "intro": "This compares how parties speak to young people, unemployment, education, opportunity and the future."
+        },
+    }
+
+    current_copy = category_copy.get(selected_category, category_copy["overview"])
+
+    return render(request, "core/policy_compare.html", {
+        "parties": parties,
+        "selected_parties": selected_parties,
+        "selected_slugs": selected_slugs,
+        "selected_category": selected_category,
+        "category_title": current_copy["title"],
+        "category_intro": current_copy["intro"],
+    })

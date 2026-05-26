@@ -1,65 +1,1011 @@
 ﻿{% extends "base.html" %}
 
 {% block content %}
+
 <section class="page-header">
     <h1>Life Under This Policy</h1>
     <p>
-        Choose your situation and see how party manifesto themes may affect your life,
-        opportunities, risks, and daily realities.
+        Manifestos sound clean on paper. Real life is messier.
+        This page explains what major political promises could feel like in everyday South African life.
     </p>
 </section>
 
-<section class="persona-selector">
-    {% for key, item in personas.items %}
-        <a href="{% url 'affects_you' %}?persona={{ key }}"
-           class="persona-pill {% if selected_key == key %}active{% endif %}">
-            {{ item.title }}
-        </a>
-    {% endfor %}
+<section class="home-section">
+
+    <div class="section-heading">
+        <p class="home-kicker">Real-life policy impact</p>
+        <h2>What would actually change for ordinary people?</h2>
+    </div>
+
+    <div class="home-feature-grid updated">
+
+        <article class="home-feature-card">
+            <span>01</span>
+            <h3>If government expands social grants</h3>
+            <p>
+                For poor households, this could mean more food security, less daily desperation,
+                better ability to buy transport, data, school items and basic household needs.
+                But the pressure would shift to public finances. The difficult question is whether
+                South Africa can expand support while also growing the economy that funds it.
+            </p>
+        </article>
+
+        <article class="home-feature-card">
+            <span>02</span>
+            <h3>If free education becomes broader</h3>
+            <p>
+                Students from working-class families could experience less debt, less exclusion
+                and more access to university or TVET education. But if funding is weak,
+                students may still face accommodation shortages, delayed allowances, overcrowded
+                institutions and degrees that do not guarantee employment.
+            </p>
+        </article>
+
+        <article class="home-feature-card">
+            <span>03</span>
+            <h3>If crime policy becomes tougher</h3>
+            <p>
+                Communities may see more visible policing, stronger sentences and more aggressive
+                law enforcement. This could make some people feel safer. But if policing remains
+                corrupt or poorly trained, tougher policy can also create abuse, wrongful arrests
+                and fear without solving the causes of crime.
+            </p>
+        </article>
+
+        <article class="home-feature-card">
+            <span>04</span>
+            <h3>If borders are enforced more strictly</h3>
+            <p>
+                Some citizens may feel government is finally responding to pressure on jobs,
+                clinics, schools and housing. But strict immigration politics can also create
+                fear, xenophobia, police abuse and scapegoating if government fails to separate
+                lawful enforcement from anti-migrant hostility.
+            </p>
+        </article>
+
+        <article class="home-feature-card">
+            <span>05</span>
+            <h3>If land reform accelerates</h3>
+            <p>
+                Landless families, emerging farmers and communities needing housing could benefit
+                from faster redistribution. But land without water, roads, finance, training,
+                markets and transparent allocation can become symbolic rather than transformative.
+                The real test is not only transfer, but productive support.
+            </p>
+        </article>
+
+        <article class="home-feature-card">
+            <span>06</span>
+            <h3>If nationalisation happens</h3>
+            <p>
+                The state could gain more control over mines, banks, energy or major industries.
+                Supporters may see this as economic justice. Critics may fear corruption,
+                inefficiency and investor panic. Daily life would depend on whether the state
+                can manage these assets better than private owners.
+            </p>
+        </article>
+
+        <article class="home-feature-card">
+            <span>07</span>
+            <h3>If small business support improves</h3>
+            <p>
+                Township entrepreneurs, informal traders and young business owners could benefit
+                from easier registration, lower red tape, safer trading spaces, access to finance
+                and better municipal support. But if the policy becomes another tender network,
+                politically connected people may benefit more than actual entrepreneurs.
+            </p>
+        </article>
+
+        <article class="home-feature-card">
+            <span>08</span>
+            <h3>If municipalities are fixed</h3>
+            <p>
+                This would be one of the biggest everyday improvements. Better municipalities
+                mean cleaner streets, working water systems, reliable billing, maintained roads,
+                functioning waste collection and faster local service delivery. Local government
+                is where politics becomes visible outside your front door.
+            </p>
+        </article>
+
+        <article class="home-feature-card">
+            <span>09</span>
+            <h3>If healthcare becomes universal</h3>
+            <p>
+                NHI-style reform could reduce the gap between private and public healthcare.
+                Poor households may gain better access to doctors and treatment. But if hospitals
+                remain under-managed, understaffed and under-equipped, universal healthcare could
+                become a promise trapped inside a weak system.
+            </p>
+        </article>
+
+    </div>
+
 </section>
 
-<section class="editorial-block persona-intro">
-    <p class="editorial-label">Selected Profile</p>
-    <h2>{{ persona.title }}</h2>
-    <p>{{ persona.intro }}</p>
-</section>
+<section class="method-showcase">
 
-<section class="longform-layout">
-    {% for item in party_breakdowns %}
-        <section class="manifesto-story">
-            <div class="story-header">
-                <span class="story-category">{{ item.party.political_position }}</span>
-                <h2>{{ item.party.name }}</h2>
+    <div class="method-left">
+        <p class="home-kicker">How to read policy impact</p>
+        <h2>A policy is never just an idea. It becomes someone’s daily reality.</h2>
+        <p>
+            Every policy changes incentives, budgets, institutions and behaviour.
+            It creates winners, losers, trade-offs and unintended consequences.
+        </p>
+    </div>
+
+    <div class="method-timeline">
+
+        <div class="method-step">
+            <span>01</span>
+            <div>
+                <h3>Your wallet</h3>
+                <p>Will prices, taxes, wages, grants, jobs or business conditions change?</p>
             </div>
+        </div>
 
-            <div class="story-section highlight">
-                <h3>What this party generally means for this profile</h3>
+        <div class="method-step">
+            <span>02</span>
+            <div>
+                <h3>Your safety</h3>
+                <p>Will policing, courts, prisons, crime prevention or community safety change?</p>
+            </div>
+        </div>
+
+        <div class="method-step">
+            <span>03</span>
+            <div>
+                <h3>Your family</h3>
+                <p>Will schools, clinics, housing, grants, food security or household stress change?</p>
+            </div>
+        </div>
+
+        <div class="method-step">
+            <span>04</span>
+            <div>
+                <h3>Your community</h3>
+                <p>Will your municipality, roads, water, electricity and public spaces improve?</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+<section class="learn-intro">
+
+    <h2>Why this page matters</h2>
+
+    <p>
+        Most political websites explain what parties promise.
+        Very few explain what those promises would actually feel like in ordinary life.
+        Politics becomes easier to understand when you stop thinking only in terms of speeches,
+        manifestos and ideology, and start thinking about systems, incentives,
+        institutions and everyday consequences.
+    </p>
+
+    <p>
+        A policy is not only a moral idea.
+        It is also a practical intervention into society.
+        It changes behaviour, redistributes resources, creates new pressures,
+        shifts power and produces unintended consequences.
+    </p>
+
+    <p>
+        This means every major policy debate in South Africa is ultimately asking:
+    </p>
+
+    <div class="example-box">
+        What kind of society are we trying to build?
+        Who benefits?
+        Who sacrifices?
+        Who pays?
+        And does the state actually have the institutional capacity to implement the vision properly?
+    </div>
+
+</section>
+
+
+
+<section class="method-showcase">
+
+    <div class="method-left">
+
+        <p class="home-kicker">The hidden reality of policy</p>
+
+        <h2>Policies sound cleaner in Parliament than they feel in real life</h2>
+
+        <p>
+            Political parties often speak in highly simplified language:
+            create jobs, fight corruption, reduce crime, transform the economy,
+            secure borders, fix municipalities, improve schools.
+        </p>
+
+        <p>
+            But once policy moves into society, things become more complicated.
+            Bureaucracies become involved.
+            Budgets become constrained.
+            Corruption interferes.
+            Municipalities fail.
+            Political factions compete.
+            Courts intervene.
+            Public anger rises.
+            And implementation gaps emerge.
+        </p>
+
+        <p>
+            The difference between a manifesto and real life is called governance.
+        </p>
+
+    </div>
+
+    <div class="method-timeline">
+
+        <div class="method-step">
+            <span>01</span>
+
+            <div>
+                <h3>The promise phase</h3>
+
                 <p>
-                    {{ item.party.youth_relevance }}
+                    Parties simplify problems into emotionally understandable language.
+                    This is where slogans, campaign speeches and manifesto promises dominate.
                 </p>
             </div>
+        </div>
 
-            {% if item.policies %}
-                {% for policy in item.policies %}
-                    <div class="story-section">
-                        <h3>{{ policy.category }}</h3>
-                        <p>{{ policy.yoh_analysis }}</p>
-                    </div>
-                {% endfor %}
-            {% else %}
-                <div class="story-section">
-                    <h3>No direct policy card yet</h3>
-                    <p>
-                        This party has not yet been given detailed policy cards for this profile,
-                        but its broader political identity still affects how it approaches your situation.
-                    </p>
-                </div>
-            {% endif %}
+        <div class="method-step">
+            <span>02</span>
 
-            <a href="{% url 'party_detail' item.party.slug %}" class="read-more">
-                Open full party dossier →
-            </a>
-        </section>
-    {% endfor %}
+            <div>
+                <h3>The policy phase</h3>
+
+                <p>
+                    Government attempts to turn promises into laws, budgets,
+                    regulations and institutional programmes.
+                </p>
+            </div>
+        </div>
+
+        <div class="method-step">
+            <span>03</span>
+
+            <div>
+                <h3>The implementation phase</h3>
+
+                <p>
+                    Departments, municipalities and public systems must actually
+                    execute the policy effectively.
+                    This is where many states struggle.
+                </p>
+            </div>
+        </div>
+
+        <div class="method-step">
+            <span>04</span>
+
+            <div>
+                <h3>The reality phase</h3>
+
+                <p>
+                    Citizens experience the actual consequences:
+                    improved services, disappointment, corruption,
+                    social tension, relief, instability or economic change.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
 </section>
-{% endblock %}
+
+
+
+<section class="home-section">
+
+    <div class="section-heading">
+        <p class="home-kicker">Everyday political life</p>
+
+        <h2>How politics quietly shapes ordinary existence</h2>
+    </div>
+
+    <div class="home-feature-grid updated">
+
+        <article class="home-feature-card">
+            <span>10</span>
+
+            <h3>Your electricity</h3>
+
+            <p>
+                Energy policy determines whether businesses can operate consistently,
+                whether students can study at night,
+                whether hospitals function properly,
+                and whether households live under constant uncertainty.
+                Loadshedding is not only an infrastructure issue.
+                It is a state-capacity issue.
+            </p>
+        </article>
+
+        <article class="home-feature-card">
+            <span>11</span>
+
+            <h3>Your transport</h3>
+
+            <p>
+                Transport policy shapes how long people travel,
+                whether workers can access jobs affordably,
+                whether students reach school safely,
+                and whether cities remain economically integrated.
+                Failed public transport quietly deepens inequality.
+            </p>
+        </article>
+
+        <article class="home-feature-card">
+            <span>12</span>
+
+            <h3>Your mental health</h3>
+
+            <p>
+                Economic instability, unemployment, crime,
+                uncertainty and institutional collapse also affect emotional wellbeing.
+                Politics shapes stress levels, optimism, trust and social anxiety,
+                even when people do not consciously think about politics daily.
+            </p>
+        </article>
+
+        <article class="home-feature-card">
+            <span>13</span>
+
+            <h3>Your sense of the future</h3>
+
+            <p>
+                Politics influences whether citizens believe tomorrow can improve.
+                When institutions function badly for long periods,
+                people stop imagining long-term stability.
+                This affects investment, migration, family planning and national morale.
+            </p>
+        </article>
+
+        <article class="home-feature-card">
+            <span>14</span>
+
+            <h3>Your relationship with the state</h3>
+
+            <p>
+                Citizens interact with the state through schools,
+                clinics, police stations, Home Affairs,
+                licensing offices, municipalities and grants.
+                If those systems fail repeatedly,
+                trust in democracy itself begins weakening.
+            </p>
+        </article>
+
+        <article class="home-feature-card">
+            <span>15</span>
+
+            <h3>Your opportunities</h3>
+
+            <p>
+                Education systems, labour markets,
+                economic growth, corruption levels,
+                infrastructure quality and social stability
+                all influence who gets opportunities and who remains trapped.
+                Politics structures possibility.
+            </p>
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<section class="learn-intro">
+
+    <h2>The most important political question</h2>
+
+    <p>
+        Many political arguments focus on morality.
+        What should happen?
+        What is fair?
+        What is just?
+    </p>
+
+    <p>
+        Those questions matter.
+        But serious political analysis also asks:
+    </p>
+
+    <div class="example-box">
+        Can the state actually implement this effectively,
+        honestly and sustainably?
+    </div>
+
+    <p>
+        This is why state capacity matters so much.
+        A weak state can destroy both market-oriented policies
+        and socialist policies.
+    </p>
+
+    <p>
+        Institutions matter because implementation matters.
+        Governance matters because ordinary people do not experience ideology directly.
+        They experience systems.
+    </p>
+
+    <p>
+        Functioning schools.
+        Working hospitals.
+        Reliable water.
+        Stable electricity.
+        Effective policing.
+        Safe transport.
+        Competent municipalities.
+    </p>
+
+    <p>
+        That is what politics eventually becomes in real life:
+        whether systems work well enough for society to function with dignity.
+    </p>
+
+</section>
+
+
+<section class="learn-intro">
+
+    <h2>Why this page matters</h2>
+
+    <p>
+        Most political websites explain what parties promise.
+        Very few explain what those promises would actually feel like in ordinary life.
+        Politics becomes easier to understand when you stop thinking only in terms of speeches,
+        manifestos and ideology, and start thinking about systems, incentives,
+        institutions and everyday consequences.
+    </p>
+
+    <p>
+        A policy is not only a moral idea.
+        It is also a practical intervention into society.
+        It changes behaviour, redistributes resources, creates new pressures,
+        shifts power and produces unintended consequences.
+    </p>
+
+    <p>
+        This means every major policy debate in South Africa is ultimately asking:
+    </p>
+
+    <div class="example-box">
+        What kind of society are we trying to build?
+        Who benefits?
+        Who sacrifices?
+        Who pays?
+        And does the state actually have the institutional capacity to implement the vision properly?
+    </div>
+
+</section>
+
+
+
+<section class="method-showcase">
+
+    <div class="method-left">
+
+        <p class="home-kicker">The hidden reality of policy</p>
+
+        <h2>Policies sound cleaner in Parliament than they feel in real life</h2>
+
+        <p>
+            Political parties often speak in highly simplified language:
+            create jobs, fight corruption, reduce crime, transform the economy,
+            secure borders, fix municipalities, improve schools.
+        </p>
+
+        <p>
+            But once policy moves into society, things become more complicated.
+            Bureaucracies become involved.
+            Budgets become constrained.
+            Corruption interferes.
+            Municipalities fail.
+            Political factions compete.
+            Courts intervene.
+            Public anger rises.
+            And implementation gaps emerge.
+        </p>
+
+        <p>
+            The difference between a manifesto and real life is called governance.
+        </p>
+
+    </div>
+
+    <div class="method-timeline">
+
+        <div class="method-step">
+            <span>01</span>
+
+            <div>
+                <h3>The promise phase</h3>
+
+                <p>
+                    Parties simplify problems into emotionally understandable language.
+                    This is where slogans, campaign speeches and manifesto promises dominate.
+                </p>
+            </div>
+        </div>
+
+        <div class="method-step">
+            <span>02</span>
+
+            <div>
+                <h3>The policy phase</h3>
+
+                <p>
+                    Government attempts to turn promises into laws, budgets,
+                    regulations and institutional programmes.
+                </p>
+            </div>
+        </div>
+
+        <div class="method-step">
+            <span>03</span>
+
+            <div>
+                <h3>The implementation phase</h3>
+
+                <p>
+                    Departments, municipalities and public systems must actually
+                    execute the policy effectively.
+                    This is where many states struggle.
+                </p>
+            </div>
+        </div>
+
+        <div class="method-step">
+            <span>04</span>
+
+            <div>
+                <h3>The reality phase</h3>
+
+                <p>
+                    Citizens experience the actual consequences:
+                    improved services, disappointment, corruption,
+                    social tension, relief, instability or economic change.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section class="home-section">
+
+    <div class="section-heading">
+        <p class="home-kicker">Everyday political life</p>
+
+        <h2>How politics quietly shapes ordinary existence</h2>
+    </div>
+
+    <div class="home-feature-grid updated">
+
+        <article class="home-feature-card">
+            <span>10</span>
+
+            <h3>Your electricity</h3>
+
+            <p>
+                Energy policy determines whether businesses can operate consistently,
+                whether students can study at night,
+                whether hospitals function properly,
+                and whether households live under constant uncertainty.
+                Loadshedding is not only an infrastructure issue.
+                It is a state-capacity issue.
+            </p>
+        </article>
+
+        <article class="home-feature-card">
+            <span>11</span>
+
+            <h3>Your transport</h3>
+
+            <p>
+                Transport policy shapes how long people travel,
+                whether workers can access jobs affordably,
+                whether students reach school safely,
+                and whether cities remain economically integrated.
+                Failed public transport quietly deepens inequality.
+            </p>
+        </article>
+
+        <article class="home-feature-card">
+            <span>12</span>
+
+            <h3>Your mental health</h3>
+
+            <p>
+                Economic instability, unemployment, crime,
+                uncertainty and institutional collapse also affect emotional wellbeing.
+                Politics shapes stress levels, optimism, trust and social anxiety,
+                even when people do not consciously think about politics daily.
+            </p>
+        </article>
+
+        <article class="home-feature-card">
+            <span>13</span>
+
+            <h3>Your sense of the future</h3>
+
+            <p>
+                Politics influences whether citizens believe tomorrow can improve.
+                When institutions function badly for long periods,
+                people stop imagining long-term stability.
+                This affects investment, migration, family planning and national morale.
+            </p>
+        </article>
+
+        <article class="home-feature-card">
+            <span>14</span>
+
+            <h3>Your relationship with the state</h3>
+
+            <p>
+                Citizens interact with the state through schools,
+                clinics, police stations, Home Affairs,
+                licensing offices, municipalities and grants.
+                If those systems fail repeatedly,
+                trust in democracy itself begins weakening.
+            </p>
+        </article>
+
+        <article class="home-feature-card">
+            <span>15</span>
+
+            <h3>Your opportunities</h3>
+
+            <p>
+                Education systems, labour markets,
+                economic growth, corruption levels,
+                infrastructure quality and social stability
+                all influence who gets opportunities and who remains trapped.
+                Politics structures possibility.
+            </p>
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<section class="learn-intro">
+
+    <h2>The most important political question</h2>
+
+    <p>
+        Many political arguments focus on morality.
+        What should happen?
+        What is fair?
+        What is just?
+    </p>
+
+    <p>
+        Those questions matter.
+        But serious political analysis also asks:
+    </p>
+
+    <div class="example-box">
+        Can the state actually implement this effectively,
+        honestly and sustainably?
+    </div>
+
+    <p>
+        This is why state capacity matters so much.
+        A weak state can destroy both market-oriented policies
+        and socialist policies.
+    </p>
+
+    <p>
+        Institutions matter because implementation matters.
+        Governance matters because ordinary people do not experience ideology directly.
+        They experience systems.
+    </p>
+
+    <p>
+        Functioning schools.
+        Working hospitals.
+        Reliable water.
+        Stable electricity.
+        Effective policing.
+        Safe transport.
+        Competent municipalities.
+    </p>
+
+    <p>
+        That is what politics eventually becomes in real life:
+        whether systems work well enough for society to function with dignity.
+    </p>
+
+</section>
+
+
+<section class="learn-intro">
+
+    <h2>Why this page matters</h2>
+
+    <p>
+        Most political websites explain what parties promise.
+        Very few explain what those promises would actually feel like in ordinary life.
+        Politics becomes easier to understand when you stop thinking only in terms of speeches,
+        manifestos and ideology, and start thinking about systems, incentives,
+        institutions and everyday consequences.
+    </p>
+
+    <p>
+        A policy is not only a moral idea.
+        It is also a practical intervention into society.
+        It changes behaviour, redistributes resources, creates new pressures,
+        shifts power and produces unintended consequences.
+    </p>
+
+    <p>
+        This means every major policy debate in South Africa is ultimately asking:
+    </p>
+
+    <div class="example-box">
+        What kind of society are we trying to build?
+        Who benefits?
+        Who sacrifices?
+        Who pays?
+        And does the state actually have the institutional capacity to implement the vision properly?
+    </div>
+
+</section>
+
+
+
+<section class="method-showcase">
+
+    <div class="method-left">
+
+        <p class="home-kicker">The hidden reality of policy</p>
+
+        <h2>Policies sound cleaner in Parliament than they feel in real life</h2>
+
+        <p>
+            Political parties often speak in highly simplified language:
+            create jobs, fight corruption, reduce crime, transform the economy,
+            secure borders, fix municipalities, improve schools.
+        </p>
+
+        <p>
+            But once policy moves into society, things become more complicated.
+            Bureaucracies become involved.
+            Budgets become constrained.
+            Corruption interferes.
+            Municipalities fail.
+            Political factions compete.
+            Courts intervene.
+            Public anger rises.
+            And implementation gaps emerge.
+        </p>
+
+        <p>
+            The difference between a manifesto and real life is called governance.
+        </p>
+
+    </div>
+
+    <div class="method-timeline">
+
+        <div class="method-step">
+            <span>01</span>
+
+            <div>
+                <h3>The promise phase</h3>
+
+                <p>
+                    Parties simplify problems into emotionally understandable language.
+                    This is where slogans, campaign speeches and manifesto promises dominate.
+                </p>
+            </div>
+        </div>
+
+        <div class="method-step">
+            <span>02</span>
+
+            <div>
+                <h3>The policy phase</h3>
+
+                <p>
+                    Government attempts to turn promises into laws, budgets,
+                    regulations and institutional programmes.
+                </p>
+            </div>
+        </div>
+
+        <div class="method-step">
+            <span>03</span>
+
+            <div>
+                <h3>The implementation phase</h3>
+
+                <p>
+                    Departments, municipalities and public systems must actually
+                    execute the policy effectively.
+                    This is where many states struggle.
+                </p>
+            </div>
+        </div>
+
+        <div class="method-step">
+            <span>04</span>
+
+            <div>
+                <h3>The reality phase</h3>
+
+                <p>
+                    Citizens experience the actual consequences:
+                    improved services, disappointment, corruption,
+                    social tension, relief, instability or economic change.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section class="home-section">
+
+    <div class="section-heading">
+        <p class="home-kicker">Everyday political life</p>
+
+        <h2>How politics quietly shapes ordinary existence</h2>
+    </div>
+
+    <div class="home-feature-grid updated">
+
+        <article class="home-feature-card">
+            <span>10</span>
+
+            <h3>Your electricity</h3>
+
+            <p>
+                Energy policy determines whether businesses can operate consistently,
+                whether students can study at night,
+                whether hospitals function properly,
+                and whether households live under constant uncertainty.
+                Loadshedding is not only an infrastructure issue.
+                It is a state-capacity issue.
+            </p>
+        </article>
+
+        <article class="home-feature-card">
+            <span>11</span>
+
+            <h3>Your transport</h3>
+
+            <p>
+                Transport policy shapes how long people travel,
+                whether workers can access jobs affordably,
+                whether students reach school safely,
+                and whether cities remain economically integrated.
+                Failed public transport quietly deepens inequality.
+            </p>
+        </article>
+
+        <article class="home-feature-card">
+            <span>12</span>
+
+            <h3>Your mental health</h3>
+
+            <p>
+                Economic instability, unemployment, crime,
+                uncertainty and institutional collapse also affect emotional wellbeing.
+                Politics shapes stress levels, optimism, trust and social anxiety,
+                even when people do not consciously think about politics daily.
+            </p>
+        </article>
+
+        <article class="home-feature-card">
+            <span>13</span>
+
+            <h3>Your sense of the future</h3>
+
+            <p>
+                Politics influences whether citizens believe tomorrow can improve.
+                When institutions function badly for long periods,
+                people stop imagining long-term stability.
+                This affects investment, migration, family planning and national morale.
+            </p>
+        </article>
+
+        <article class="home-feature-card">
+            <span>14</span>
+
+            <h3>Your relationship with the state</h3>
+
+            <p>
+                Citizens interact with the state through schools,
+                clinics, police stations, Home Affairs,
+                licensing offices, municipalities and grants.
+                If those systems fail repeatedly,
+                trust in democracy itself begins weakening.
+            </p>
+        </article>
+
+        <article class="home-feature-card">
+            <span>15</span>
+
+            <h3>Your opportunities</h3>
+
+            <p>
+                Education systems, labour markets,
+                economic growth, corruption levels,
+                infrastructure quality and social stability
+                all influence who gets opportunities and who remains trapped.
+                Politics structures possibility.
+            </p>
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<section class="learn-intro">
+
+    <h2>The most important political question</h2>
+
+    <p>
+        Many political arguments focus on morality.
+        What should happen?
+        What is fair?
+        What is just?
+    </p>
+
+    <p>
+        Those questions matter.
+        But serious political analysis also asks:
+    </p>
+
+    <div class="example-box">
+        Can the state actually implement this effectively,
+        honestly and sustainably?
+    </div>
+
+    <p>
+        This is why state capacity matters so much.
+        A weak state can destroy both market-oriented policies
+        and socialist policies.
+    </p>
+
+    <p>
+        Institutions matter because implementation matters.
+        Governance matters because ordinary people do not experience ideology directly.
+        They experience systems.
+    </p>
+
+    <p>
+        Functioning schools.
+        Working hospitals.
+        Reliable water.
+        Stable electricity.
+        Effective policing.
+        Safe transport.
+        Competent municipalities.
+    </p>
+
+    <p>
+        That is what politics eventually becomes in real life:
+        whether systems work well enough for society to function with dignity.
+    </p>
+
+</section>
+
